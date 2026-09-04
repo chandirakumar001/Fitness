@@ -1,0 +1,1752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Freak - Your Personal Fitness Companion</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #0a0e27;
+            --secondary-dark: #1a1f3a;
+            --accent-green: #00ff41;
+            --accent-orange: #ff6b00;
+            --text-light: #ffffff;
+            --text-muted: #a0a0a0;
+            --border-color: #2a2f4f;
+            --card-bg: #161b2e;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--text-light);
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--accent-green);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent-green);
+        }
+
+        .nav-cta {
+            background: var(--accent-green);
+            color: var(--primary-dark);
+            padding: 0.65rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 255, 65, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .header-container {
+                padding: 0 1rem;
+            }
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            margin-top: 80px;
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, rgba(0, 255, 65, 0.05) 0%, rgba(255, 107, 0, 0.05) 100%);
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 255, 65, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(40px);
+        }
+
+        .hero-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(0, 255, 65, 0.1);
+            border: 1px solid rgba(0, 255, 65, 0.3);
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            margin-bottom: 2rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent-green);
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease 0.1s both;
+        }
+
+        .hero h1 .highlight {
+            color: var(--accent-green);
+            text-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            animation: fadeInUp 0.8s ease 0.3s both;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1.5rem;
+            animation: fadeInUp 0.8s ease 0.4s both;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: var(--accent-green);
+            color: var(--primary-dark);
+            box-shadow: 0 8px 24px rgba(0, 255, 65, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(0, 255, 65, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent-green);
+            border: 2px solid var(--accent-green);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 255, 65, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* ===== SECTION GENERAL ===== */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-header {
+            margin-bottom: 3.5rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .section-header h2 .highlight {
+            color: var(--accent-green);
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            animation: fadeInUp 0.6s ease 0.1s both;
+        }
+
+        /* ===== FITNESS GOAL SECTION ===== */
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .goal-card {
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .goal-card:hover {
+            border-color: var(--accent-green);
+            box-shadow: 0 8px 24px rgba(0, 255, 65, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .goal-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .goal-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .goal-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ===== WORKOUT PLANNER SECTION ===== */
+        .workout-week {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .workout-day {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .workout-day:hover {
+            border-color: var(--accent-green);
+            box-shadow: 0 8px 24px rgba(0, 255, 65, 0.15);
+            transform: translateY(-3px);
+        }
+
+        .workout-day h3 {
+            color: var(--accent-green);
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .workout-item {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .workout-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .exercise-name {
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .exercise-details {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .detail-tag {
+            background: rgba(0, 255, 65, 0.1);
+            color: var(--accent-green);
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.75rem;
+        }
+
+        /* ===== CALISTHENICS SECTION ===== */
+        .progression-path {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+            padding: 1rem 0;
+            gap: 1rem;
+        }
+
+        .progression-step {
+            flex: 1;
+            min-width: 180px;
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .progression-step:hover {
+            border-color: var(--accent-green);
+            box-shadow: 0 8px 24px rgba(0, 255, 65, 0.2);
+            transform: scale(1.05);
+        }
+
+        .progression-step .step-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .progression-step h4 {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        .progression-step p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .progression-path {
+                flex-wrap: wrap;
+            }
+        }
+
+        /* ===== CALORIE CALCULATOR SECTION ===== */
+        .calculator-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 1rem;
+            background: var(--secondary-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .search-box input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--accent-green);
+            box-shadow: 0 0 12px rgba(0, 255, 65, 0.2);
+        }
+
+        .search-box button {
+            padding: 0 1.5rem;
+            background: var(--accent-green);
+            color: var(--primary-dark);
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-box button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 255, 65, 0.3);
+        }
+
+        .food-result {
+            background: var(--primary-dark);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            animation: slideIn 0.4s ease;
+        }
+
+        .food-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .food-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
+        .food-calories {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent-green);
+        }
+
+        .macro-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .macro-item {
+            text-align: center;
+            padding: 0.75rem;
+            background: rgba(0, 255, 65, 0.05);
+            border-radius: 6px;
+        }
+
+        .macro-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .macro-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-green);
+        }
+
+        /* ===== PROGRESS SECTION ===== */
+        .progress-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .progress-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .progress-card h3 {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .progress-value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-label {
+            color: var(--text-light);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .streak-calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            background: var(--secondary-dark);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .calendar-day.active {
+            background: var(--accent-green);
+            color: var(--primary-dark);
+            box-shadow: 0 4px 12px rgba(0, 255, 65, 0.3);
+        }
+
+        .calendar-day:hover {
+            transform: scale(1.1);
+        }
+
+        /* ===== PLAYLIST SECTION ===== */
+        .playlist-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .player-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 12px;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .player-image {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, rgba(0, 255, 65, 0.2), rgba(255, 107, 0, 0.2));
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .player-info h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .player-info p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .player-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .control-btn {
+            width: 50px;
+            height: 50px;
+            border: 2px solid var(--border-color);
+            background: transparent;
+            color: var(--text-light);
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .control-btn:hover {
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+            box-shadow: 0 4px 12px rgba(0, 255, 65, 0.2);
+        }
+
+        .control-btn.play {
+            background: var(--accent-green);
+            color: var(--primary-dark);
+            border-color: var(--accent-green);
+            width: 60px;
+            height: 60px;
+        }
+
+        .control-btn.play:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 255, 65, 0.4);
+        }
+
+        .motivation-quotes {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .quote-card {
+            background: var(--card-bg);
+            border-left: 4px solid var(--accent-green);
+            padding: 1.5rem;
+            border-radius: 8px;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .quote-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--text-light);
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+        }
+
+        .quote-author {
+            font-size: 0.9rem;
+            color: var(--accent-green);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .playlist-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== TIPS SECTION ===== */
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .tip-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .tip-card:hover {
+            border-color: var(--accent-green);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 255, 65, 0.15);
+        }
+
+        .tip-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tip-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--text-light);
+        }
+
+        .tip-card p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* ===== REVIEWS SECTION ===== */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .review-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 12px;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .stars {
+            color: var(--accent-green);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            letter-spacing: 0.2rem;
+        }
+
+        .review-text {
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+
+        .reviewer-name {
+            font-weight: 700;
+            color: var(--accent-green);
+            font-size: 0.9rem;
+        }
+
+        /* ===== FAQ SECTION ===== */
+        .faq-list {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.6s ease;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            background: var(--card-bg);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: var(--text-light);
+            user-select: none;
+        }
+
+        .faq-question:hover {
+            background: var(--secondary-dark);
+            color: var(--accent-green);
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+            color: var(--accent-green);
+        }
+
+        .faq-toggle.open {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 1.5rem;
+        }
+
+        .faq-answer.open {
+            max-height: 500px;
+            padding: 1.5rem;
+        }
+
+        .faq-answer p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--secondary-dark);
+            border-top: 1px solid var(--border-color);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-closing {
+            text-align: center;
+            padding-bottom: 2rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .footer-closing p {
+            font-size: 1.1rem;
+            font-weight: 500;
+            line-height: 1.7;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-closing .brand {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            color: var(--text-light);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-closing .brand span {
+            color: var(--accent-green);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--accent-green);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-section a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-green);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 4rem 1.5rem;
+                margin-top: 60px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .hero-ctas {
+                gap: 1rem;
+            }
+
+            .btn {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.9rem;
+                flex: 1;
+                min-width: 120px;
+            }
+
+            section {
+                padding: 3rem 1.5rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.75rem;
+            }
+
+            .goals-grid,
+            .workout-week,
+            .tips-grid,
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .progression-path {
+                flex-direction: column;
+            }
+
+            .progression-step {
+                width: 100%;
+            }
+
+            nav a {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* ===== UTILITY ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-3 {
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-container">
+            <div class="logo">Fitness <span>Freak</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#workout">Workouts</a></li>
+                    <li><a href="#calisthenics">Calisthenics</a></li>
+                    <li><a href="#calories">Calories</a></li>
+                    <li><a href="#progress">Progress</a></li>
+                    <li><a href="#faq">FAQs</a></li>
+                    <li><button class="nav-cta">Sign Up</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-badge">
+                ⚡ Join thousands building their best bodies
+            </div>
+            <h1>Build Your <span class="highlight">Body.</span><br>Build Your <span class="highlight">Discipline.</span></h1>
+            <p class="hero-subtitle">Your complete fitness companion for workouts, calisthenics, nutrition and everyday motivation.</p>
+            <p class="hero-description">Train smarter, understand your nutrition, and stay consistent — all in one place.</p>
+            <div class="hero-ctas">
+                <button class="btn btn-primary">Start Your Fitness Journey</button>
+                <button class="btn btn-secondary">Explore Workouts</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FITNESS GOAL SECTION -->
+    <section id="goals">
+        <div class="section-header">
+            <h2>What's Your Fitness <span class="highlight">Goal?</span></h2>
+            <p>Choose your goal and get guidance designed around your fitness journey.</p>
+        </div>
+        <div class="goals-grid">
+            <div class="goal-card">
+                <div class="goal-icon">🔥</div>
+                <h3>Weight Loss</h3>
+                <p>Burn fat, shed pounds, and build a leaner physique</p>
+            </div>
+            <div class="goal-card">
+                <div class="goal-icon">💪</div>
+                <h3>Weight Gain</h3>
+                <p>Build muscle, gain strength, and bulk up sustainably</p>
+            </div>
+            <div class="goal-card">
+                <div class="goal-icon">🏋️</div>
+                <h3>Build Strength</h3>
+                <p>Get stronger, lift heavier, and dominate your workouts</p>
+            </div>
+            <div class="goal-card">
+                <div class="goal-icon">⚡</div>
+                <h3>General Fitness</h3>
+                <p>Stay active, build endurance, and feel amazing</p>
+            </div>
+        </div>
+        <div class="text-center mt-3">
+            <button class="btn btn-primary">Find My Goal</button>
+        </div>
+    </section>
+
+    <!-- WORKOUT PLANNER SECTION -->
+    <section id="workout">
+        <div class="section-header">
+            <h2>Your Weekly Workout. <span class="highlight">Planned.</span></h2>
+            <p>Follow a structured workout routine without wondering what to train next.</p>
+        </div>
+        <div class="workout-week">
+            <div class="workout-day">
+                <h3>Monday</h3>
+                <div class="workout-item">
+                    <div class="exercise-name">Push-ups</div>
+                    <div class="exercise-details">
+                        <span class="detail-tag">4 sets</span>
+                        <span class="detail-tag">10-12 reps</span>
+                        <span class="detail-tag">60s rest</span>
+                    </div>
+                </div>
+                <div class="workout-item">
+                    <div class="exercise-name">Dumbbell Press</div>
+                    <div class="exercise-details">
+                        <span class="detail-tag">4 sets</span>
+                        <span class="detail-tag">8-10 reps</span>
+                        <span class="detail-tag">90s rest</span>
+                    </div>
+                </div>
+                <div class="workout-item">
+                    <div class="exercise-name">Tricep Dips</div>
+                    <div class="exercise-details">
+                        <span class="detail-tag">3 sets</span>
+                        <span class="detail-tag">8-12 reps</span>
+                        <span class="detail-tag">60s rest</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="workout-day">
+                <h3>Tuesday</h3>
+                <div class="workout-item">
+                    <div class="exercise-name">Squats</div>
+                    <div class="exercise-details">
+                        <span class="detail-tag">4 sets</span>
+                        <span class="detail-tag">12-15 reps</span>
+                        <span class="detail-tag">90s rest</span>
+                    </div>
+                </div>
+                <div class="workout-item">
+                    <div class="exercise-name">Lunges</div>
+                    <div class="exercise-details">
+                        <span class="detail-tag">3 sets</span>
+                        <span class="detail-tag">10 each leg</span>
+                        <span class="detail-tag">60s rest</span>
+                    </div>
+                </div>
+                <div class="workout-item">
+                    <div class="exercise-name">Calf Raises</div>
+                    <div class="exercise-details">
+                        <span class="detail-tag">3 sets</span>
+                        <span class="detail-tag">15-20 reps</span>
+                        <span class="detail-tag">45s rest</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="workout-day">
+                <h3>Wednesday</h3>
+                <div class="workout-item">
+                    <div class="exercise-name">Pull-ups</div>
+                    <div class="exercise-details">
+                        <span class="detail-tag">4 sets</span>
+                        <span class="detail-tag">6-10 reps</span>
+                        <span class="detail-tag">90s rest</span>
+                    </div>
+                </div>
+                <div class="workout-item">
+                    <div class="exercise-name">Bent Rows</div>
+                    <div class="exercise-details">
+                        <span class="detail-tag">4 sets</span>
+                        <span class="detail-tag">8-10 reps</span>
+                        <span class="detail-tag">90s rest</span>
+                    </div>
+                </div>
+                <div class="workout-item">
+                    <div class="exercise-name">Lat Pulldowns</div>
+                    <div class="exercise-details">
+                        <span class="detail-tag">3 sets</span>
+                        <span class="detail-tag">10-12 reps</span>
+                        <span class="detail-tag">60s rest</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="workout-day">
+                <h3>Thursday</h3>
+                <div class="workout-item">
+                    <div class="exercise-name">Planks</div>
+                    <div class="exercise-details">
+                        <span class="detail-tag">4 sets</span>
+                        <span class="detail-tag">45-60s hold</span>
+                        <span class="detail-tag">45s rest</span>
+                    </div>
+                </div>
+                <div class="workout-item">
+                    <div class="exercise-name">Ab Crunches</div>
+                    <div class="exercise-details">
+                        <span class="detail-tag">3 sets</span>
+                        <span class="detail-tag">15-20 reps</span>
+                        <span class="detail-tag">60s rest</span>
+                    </div>
+                </div>
+                <div class="workout-item">
+                    <div class="exercise-name">Mountain Climbers</div>
+                    <div class="exercise-details">
+                        <span class="detail-tag">3 sets</span>
+                        <span class="detail-tag">20 reps</span>
+                        <span class="detail-tag">60s rest</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="workout-day">
+                <h3>Friday</h3>
+                <div class="workout-item">
+                    <div class="exercise-name">Compound Lifts</div>
+                    <div class="exercise-details">
+                        <span class="detail-tag">4 sets</span>
+                        <span class="detail-tag">5-6 reps</span>
+                        <span class="detail-tag">120s rest</span>
+                    </div>
+                </div>
+                <div class="workout-item">
+                    <div class="exercise-name">Accessory Work</div>
+                    <div class="exercise-details">
+                        <span class="detail-tag">3 sets</span>
+                        <span class="detail-tag">8-10 reps</span>
+                        <span class="detail-tag">90s rest</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-3">
+            <button class="btn btn-primary">View My Workout</button>
+        </div>
+    </section>
+
+    <!-- CALISTHENICS SECTION -->
+    <section id="calisthenics">
+        <div class="section-header">
+            <h2>Start Calisthenics <span class="highlight">From Zero</span></h2>
+            <p>Learn bodyweight training step by step, from basic movements to more advanced skills.</p>
+        </div>
+        <div class="progression-path">
+            <div class="progression-step">
+                <div class="step-icon">🟢</div>
+                <h4>Beginner</h4>
+                <p>Basic push-ups, squats, plank holds</p>
+            </div>
+            <div class="progression-step">
+                <div class="step-icon">🟡</div>
+                <h4>Intermediate</h4>
+                <p>Wide-grip pull-ups, one-armed planks</p>
+            </div>
+            <div class="progression-step">
+                <div class="step-icon">🔴</div>
+                <h4>Advanced</h4>
+                <p>Handstand push-ups, muscle-ups</p>
+            </div>
+            <div class="progression-step">
+                <div class="step-icon">⭐</div>
+                <h4>Expert</h4>
+                <p>Full planche, front lever holds</p>
+            </div>
+        </div>
+        <div class="text-center mt-3">
+            <button class="btn btn-primary">Explore Calisthenics</button>
+        </div>
+    </section>
+
+    <!-- CALORIE CALCULATOR SECTION -->
+    <section id="calories">
+        <div class="section-header">
+            <h2>Know What You're <span class="highlight">Eating.</span></h2>
+            <p>Understand food calories and basic nutrition so you can make smarter everyday choices.</p>
+        </div>
+        <div class="calculator-box">
+            <div class="search-box">
+                <input type="text" placeholder="Search for a food item..." id="foodInput">
+                <button onclick="searchFood()">Search</button>
+            </div>
+            <div id="foodResults"></div>
+        </div>
+        <div class="text-center mt-3">
+            <button class="btn btn-primary">Calculate Calories</button>
+        </div>
+    </section>
+
+    <!-- PROGRESS SECTION -->
+    <section id="progress">
+        <div class="section-header">
+            <h2>Consistency Creates <span class="highlight">Results.</span></h2>
+            <p>Track your workout completion and stay accountable throughout your fitness journey.</p>
+        </div>
+        <div class="progress-container">
+            <div class="progress-card">
+                <h3>Current Streak</h3>
+                <div class="progress-value">🔥 42</div>
+                <div class="progress-label">Days Strong</div>
+            </div>
+            <div class="progress-card">
+                <h3>This Month</h3>
+                <div class="progress-value">✅ 20</div>
+                <div class="progress-label">Workouts Completed</div>
+            </div>
+            <div class="progress-card">
+                <h3>Total Progress</h3>
+                <div class="progress-value">🎖️ 156</div>
+                <div class="progress-label">Total Workouts</div>
+            </div>
+        </div>
+        <div class="progress-card">
+            <h3>Your Activity Heatmap (Last 8 Weeks)</h3>
+            <div class="streak-calendar">
+                <div class="calendar-day active">M</div>
+                <div class="calendar-day active">T</div>
+                <div class="calendar-day">W</div>
+                <div class="calendar-day active">T</div>
+                <div class="calendar-day active">F</div>
+                <div class="calendar-day">S</div>
+                <div class="calendar-day">S</div>
+                <div class="calendar-day active">M</div>
+                <div class="calendar-day active">T</div>
+                <div class="calendar-day active">W</div>
+                <div class="calendar-day active">T</div>
+                <div class="calendar-day">F</div>
+                <div class="calendar-day active">S</div>
+                <div class="calendar-day active">S</div>
+                <div class="calendar-day active">M</div>
+                <div class="calendar-day active">T</div>
+                <div class="calendar-day active">W</div>
+                <div class="calendar-day active">T</div>
+                <div class="calendar-day active">F</div>
+                <div class="calendar-day active">S</div>
+                <div class="calendar-day active">S</div>
+                <div class="calendar-day active">M</div>
+                <div class="calendar-day active">T</div>
+                <div class="calendar-day active">W</div>
+                <div class="calendar-day active">T</div>
+                <div class="calendar-day active">F</div>
+                <div class="calendar-day">S</div>
+                <div class="calendar-day active">S</div>
+                <div class="calendar-day active">M</div>
+                <div class="calendar-day active">T</div>
+                <div class="calendar-day">W</div>
+                <div class="calendar-day active">T</div>
+                <div class="calendar-day active">F</div>
+                <div class="calendar-day active">S</div>
+                <div class="calendar-day active">S</div>
+                <div class="calendar-day active">M</div>
+                <div class="calendar-day active">T</div>
+                <div class="calendar-day active">W</div>
+                <div class="calendar-day active">T</div>
+                <div class="calendar-day active">F</div>
+                <div class="calendar-day active">S</div>
+                <div class="calendar-day">S</div>
+                <div class="calendar-day active">M</div>
+                <div class="calendar-day active">T</div>
+                <div class="calendar-day active">W</div>
+                <div class="calendar-day active">T</div>
+                <div class="calendar-day active">F</div>
+                <div class="calendar-day active">S</div>
+                <div class="calendar-day active">S</div>
+                <div class="calendar-day active">M</div>
+                <div class="calendar-day active">T</div>
+                <div class="calendar-day active">W</div>
+                <div class="calendar-day active">T</div>
+                <div class="calendar-day">F</div>
+                <div class="calendar-day active">S</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLAYLIST SECTION -->
+    <section>
+        <div class="section-header">
+            <h2>Turn Every Workout Into <span class="highlight">Energy.</span></h2>
+            <p>Stay motivated with a dedicated workout playlist while you train.</p>
+        </div>
+        <div class="playlist-container">
+            <div class="player-card">
+                <div class="player-image">🎵</div>
+                <div class="player-info">
+                    <h3>Workout Pulse</h3>
+                    <p>High-energy tracks to power your training sessions</p>
+                </div>
+                <div class="player-controls">
+                    <button class="control-btn">⏮</button>
+                    <button class="control-btn play">▶</button>
+                    <button class="control-btn">⏭</button>
+                </div>
+            </div>
+            <div class="motivation-quotes">
+                <div class="quote-card">
+                    <div class="quote-text">"The only impossible journey is the one you never begin."</div>
+                    <div class="quote-author">— Tony Robbins</div>
+                </div>
+                <div class="quote-card">
+                    <div class="quote-text">"Your only limit is you."</div>
+                    <div class="quote-author">— Unknown</div>
+                </div>
+                <div class="quote-card">
+                    <div class="quote-text">"Don't watch the clock; do what it does. Keep going."</div>
+                    <div class="quote-author">— Sam Levenson</div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-3">
+            <button class="btn btn-primary">Start Your Playlist</button>
+        </div>
+    </section>
+
+    <!-- FITNESS TIPS SECTION -->
+    <section>
+        <div class="section-header">
+            <h2>Small Steps. <span class="highlight">Stronger You.</span></h2>
+            <p>Practical fitness tips to keep you on track and motivated</p>
+        </div>
+        <div class="tips-grid">
+            <div class="tip-card">
+                <div class="tip-icon">🔄</div>
+                <h3>Consistency Beats Intensity</h3>
+                <p>Showing up regularly matters more than one epic workout. Small, consistent efforts compound into massive results over time.</p>
+            </div>
+            <div class="tip-card">
+                <div class="tip-icon">😴</div>
+                <h3>Proper Rest is Training</h3>
+                <p>Your muscles grow during rest, not during workouts. Prioritize 7-9 hours of quality sleep and take rest days seriously.</p>
+            </div>
+            <div class="tip-card">
+                <div class="tip-icon">🥗</div>
+                <h3>Nutrition Fuels Progress</h3>
+                <p>You can't out-train a bad diet. Focus on whole foods, adequate protein, and consistent calorie tracking for your goal.</p>
+            </div>
+            <div class="tip-card">
+                <div class="tip-icon">💪</div>
+                <h3>Progressive Overload Works</h3>
+                <p>Add one more rep, one more set, or a bit more weight each week. Gradual progression prevents plateaus and builds lasting strength.</p>
+            </div>
+            <div class="tip-card">
+                <div class="tip-icon">📊</div>
+                <h3>Track Everything</h3>
+                <p>What gets measured gets managed. Log your workouts, calories, and progress to stay accountable and spot trends.</p>
+            </div>
+            <div class="tip-card">
+                <div class="tip-icon">🎯</div>
+                <h3>Stay Disciplined</h3>
+                <p>Motivation fades, but discipline keeps you going. Build habits, not just goals. Show up even when you don't feel like it.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS SECTION -->
+    <section>
+        <div class="section-header">
+            <h2>Real People. <span class="highlight">Real Progress.</span></h2>
+            <p>See how others are transforming their fitness with Fitness Freak</p>
+        </div>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <div class="review-text">"I've tried like three fitness apps before this one and always gave up in a week. Something about the way Fitness Freak lays out the weekly plan just made it click for me. I'm on week 6 now."</div>
+                <div class="reviewer-name">— Ankit R.</div>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <div class="review-text">"The calisthenics section is honestly perfect for beginners. I couldn't even do a full push-up when I started, and the progressions actually made sense instead of throwing me straight into pull-ups."</div>
+                <div class="reviewer-name">— Meera S.</div>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <div class="review-text">"I didn't expect much from the calorie checker but I use it almost daily now. It's simple, doesn't overwhelm me with numbers, and helped me realize how much I was underestimating my snacks 😅"</div>
+                <div class="reviewer-name">— Devansh P.</div>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <div class="review-text">"The progress tracker is what keeps me coming back. Seeing my streak makes me not want to break it, even on lazy days. This app genuinely changed my habits."</div>
+                <div class="reviewer-name">— Priya K.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq">
+        <div class="section-header text-center">
+            <h2>Frequently Asked <span class="highlight">Questions</span></h2>
+            <p>Everything you need to know about Fitness Freak</p>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Is Fitness Freak suitable for beginners?</span>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes. The website is designed to guide beginners through workouts, calisthenics, nutrition and fitness goals step by step. Every section starts with foundational content and progressively builds to more advanced material, making it perfect for anyone starting their fitness journey.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Can I choose my fitness goal?</span>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes. Users can choose goals such as weight loss, weight gain, strength building or general fitness. Once you select your goal, all workout recommendations and nutrition guidance will be customized around that specific objective.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Does the website provide weekly workouts?</span>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes. Users can follow structured weekly workout plans with exercises, sets, reps and rest times clearly laid out. The workouts are designed to be progressive, meaning they adapt as you get stronger and more experienced.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Can beginners learn calisthenics?</span>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes. The calisthenics section starts with basic bodyweight movements and gradually introduces progression. You'll learn proper form, understand progression paths, and safely advance from basic push-ups and squats to more advanced skills like pull-ups and muscle-ups.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Can I calculate food calories?</span>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes. Users can search for foods and check their estimated calorie information. You'll also see macro breakdowns (protein, carbs, fats) to understand the nutritional profile of what you're eating, helping you make smarter dietary choices.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Can I track my workouts?</span>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes. Users can mark completed workouts and track their consistency over time. You'll see your workout streaks, total completed sessions, and get motivational progress visualizations to help keep you accountable and celebrate your wins.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-closing">
+                <span class="brand">Fitness <span>Freak</span></span>
+                <p>Train Smart. Stay Consistent. Become Stronger.</p>
+                <p style="margin-top: 0.75rem; font-size: 0.95rem;">Your fitness journey starts with one decision — show up today.</p>
+            </div>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#goals">Fitness Goals</a></li>
+                        <li><a href="#workout">Workout Planner</a></li>
+                        <li><a href="#calisthenics">Calisthenics</a></li>
+                        <li><a href="#calories">Calorie Tracker</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Features</h4>
+                    <ul>
+                        <li><a href="#progress">Progress Tracking</a></li>
+                        <li><a href="#">Motivation & Playlist</a></li>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">Achievements</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#faq">FAQs</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <ul>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">YouTube</a></li>
+                        <li><a href="#">Facebook</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Fitness Freak. All rights reserved. | Built with passion for your fitness journey</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Toggle FAQ Accordion
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const toggle = element.querySelector('.faq-toggle');
+            
+            // Close all other FAQs
+            document.querySelectorAll('.faq-answer').forEach(item => {
+                if (item !== answer) {
+                    item.classList.remove('open');
+                }
+            });
+            
+            document.querySelectorAll('.faq-toggle').forEach(item => {
+                if (item !== toggle) {
+                    item.classList.remove('open');
+                }
+            });
+            
+            // Toggle current FAQ
+            answer.classList.toggle('open');
+            toggle.classList.toggle('open');
+        }
+
+        // Sample Food Data for Demo
+        const foodDatabase = [
+            { name: 'Chicken Breast (100g)', calories: 165, protein: 31, carbs: 0, fat: 3.6 },
+            { name: 'Broccoli (100g)', calories: 34, protein: 2.8, carbs: 7, fat: 0.4 },
+            { name: 'Brown Rice (100g cooked)', calories: 111, protein: 2.6, carbs: 23, fat: 0.9 },
+            { name: 'Eggs (1 large)', calories: 78, protein: 6, carbs: 0.6, fat: 5.3 },
+            { name: 'Banana (medium)', calories: 89, protein: 1.1, carbs: 23, fat: 0.3 },
+            { name: 'Peanut Butter (2 tbsp)', calories: 190, protein: 8, carbs: 7, fat: 16 },
+            { name: 'Salmon (100g)', calories: 208, protein: 20, carbs: 0, fat: 13 },
+            { name: 'Greek Yogurt (100g)', calories: 59, protein: 10, carbs: 3.3, fat: 0.4 },
+            { name: 'Oats (1/2 cup dry)', calories: 150, protein: 5, carbs: 27, fat: 3 },
+            { name: 'Almonds (28g)', calories: 161, protein: 6, carbs: 6, fat: 14 }
+        ];
+
+        // Search Food Function
+        function searchFood() {
+            const input = document.getElementById('foodInput').value.toLowerCase();
+            const resultsContainer = document.getElementById('foodResults');
+            resultsContainer.innerHTML = '';
+
+            if (!input) {
+                return;
+            }
+
+            const matches = foodDatabase.filter(food => 
+                food.name.toLowerCase().includes(input)
+            );
+
+            if (matches.length === 0) {
+                resultsContainer.innerHTML = '<p style="color: var(--text-muted); padding: 1rem;">No foods found. Try searching for chicken, rice, eggs, banana, etc.</p>';
+                return;
+            }
+
+            matches.forEach(food => {
+                const result = document.createElement('div');
+                result.className = 'food-result';
+                result.innerHTML = `
+                    <div class="food-header">
+                        <div class="food-name">${food.name}</div>
+                        <div class="food-calories">${food.calories} kcal</div>
+                    </div>
+                    <div class="macro-info">
+                        <div class="macro-item">
+                            <div class="macro-label">Protein</div>
+                            <div class="macro-value">${food.protein}g</div>
+                        </div>
+                        <div class="macro-item">
+                            <div class="macro-label">Carbs</div>
+                            <div class="macro-value">${food.carbs}g</div>
+                        </div>
+                        <div class="macro-item">
+                            <div class="macro-label">Fat</div>
+                            <div class="macro-value">${food.fat}g</div>
+                        </div>
+                    </div>
+                `;
+                resultsContainer.appendChild(result);
+            });
+        }
+
+        // Allow Enter key to search
+        document.getElementById('foodInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchFood();
+            }
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Add scroll animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Button interactions
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                alert('This feature will be available soon! Start your fitness journey with Fitness Freak.');
+            });
+        });
+    </script>
+</body>
+</html>
