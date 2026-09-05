@@ -456,6 +456,9 @@ let currentSong = 0;
 let isPlaying = false;
 
 const audio = new Audio();
+audio.volume = 1.0;
+audio.muted = false;
+audio.preload = "auto";
 const playBtn = document.querySelector(".control-btn.play");
 const previousBtn = document.querySelector(".control-btn.previous");
 const nextBtn = document.querySelector(".control-btn.next");
@@ -483,12 +486,21 @@ function loadSong(index) {
 }
 
 function playSong() {
+    audio.volume = 1.0;
+    audio.muted = false;
+
     audio.play()
         .then(() => {
             isPlaying = true;
-            if (playBtn) playBtn.textContent = "⏸";
+            if (playBtn) {
+                playBtn.textContent = "⏸️";
+            }
+            console.log("🎵 Song Playing:", playlist[currentSong].name);
         })
-        .catch(error => console.log("Play error:", error));
+        .catch(error => {
+            console.error("❌ Play Error:", error);
+            alert("Song play aagala. Error: " + error.message);
+        });
 }
 
 function pauseSong() {
