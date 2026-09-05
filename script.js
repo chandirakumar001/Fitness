@@ -486,20 +486,15 @@ function loadSong(index) {
 }
 
 function playSong() {
-    audio.volume = 1.0;
-    audio.muted = false;
-
     audio.play()
         .then(() => {
+            console.log("SONG PLAYING");
             isPlaying = true;
-            if (playBtn) {
-                playBtn.textContent = "⏸️";
-            }
-            console.log("🎵 Song Playing:", playlist[currentSong].name);
+            playBtn.textContent = "⏸️";
         })
         .catch(error => {
-            console.error("❌ Play Error:", error);
-            alert("Song play aagala. Error: " + error.message);
+            console.log("PLAY ERROR:", error.name, error.message);
+            alert("PLAY ERROR: " + error.name + "\n" + error.message);
         });
 }
 
