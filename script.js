@@ -1,6 +1,6 @@
 /* =========================================
-   FITNESS FREAK - FIXED JAVASCRIPT
-   All Features Working - No Conflicts
+   FITNESS FREAK - WITH MUSIC PLAYER
+   8 Songs Playlist (Without Kaalamadan)
 ========================================= */
 
 // Remove all old event listeners
@@ -128,18 +128,15 @@ document.querySelectorAll(".goal-card").forEach(card => {
         const title = this.querySelector("h3").textContent.trim();
         const existingInfo = this.querySelector(".button-info");
         
-        // If info exists, remove it
         if (existingInfo) {
             existingInfo.remove();
             this.classList.remove("selected");
             return;
         }
         
-        // Remove info from all other cards
         document.querySelectorAll(".goal-card .button-info").forEach(info => info.remove());
         document.querySelectorAll(".goal-card").forEach(c => c.classList.remove("selected"));
         
-        // Add info to this card
         if (goalInfo[title]) {
             const info = document.createElement("div");
             info.className = "button-info";
@@ -151,7 +148,6 @@ document.querySelectorAll(".goal-card").forEach(card => {
     });
 });
 
-// Close goal cards when clicking outside
 document.addEventListener("click", function(e) {
     if (!e.target.closest(".goal-card")) {
         document.querySelectorAll(".goal-card .button-info").forEach(info => info.remove());
@@ -230,18 +226,15 @@ document.querySelectorAll(".progression-step").forEach(step => {
         const title = this.querySelector("h4").textContent.trim();
         const existingInfo = this.querySelector(".level-info");
         
-        // If info exists, remove it
         if (existingInfo) {
             existingInfo.remove();
             this.classList.remove("active-level");
             return;
         }
         
-        // Remove info from all other steps
         document.querySelectorAll(".progression-step .level-info").forEach(info => info.remove());
         document.querySelectorAll(".progression-step").forEach(s => s.classList.remove("active-level"));
         
-        // Add info to this step
         if (calisthenicsInfo[title]) {
             const info = document.createElement("div");
             info.className = "level-info";
@@ -253,7 +246,6 @@ document.querySelectorAll(".progression-step").forEach(step => {
     });
 });
 
-// Close calisthenics when clicking outside
 document.addEventListener("click", function(e) {
     if (!e.target.closest(".progression-step")) {
         document.querySelectorAll(".progression-step .level-info").forEach(info => info.remove());
@@ -385,12 +377,10 @@ function searchFood() {
                 return;
             }
             
-            // Convert kg to grams
             if (unit === "kg") {
                 quantity = quantity * 1000;
             }
             
-            // Calculate based on 100g
             const multiplier = quantity / 100;
             const totalCalories = Math.round(food.calories * multiplier);
             const totalProtein = (food.protein * multiplier).toFixed(1);
@@ -415,7 +405,6 @@ function searchFood() {
     });
 }
 
-// Allow Enter key to search
 document.addEventListener("keypress", function(e) {
     if (e.target.id === "foodInput" && e.key === "Enter") {
         searchFood();
@@ -431,7 +420,6 @@ function toggleFAQ(element) {
     const answer = element.nextElementSibling;
     const toggle = element.querySelector(".faq-toggle");
     
-    // Close all other FAQs
     document.querySelectorAll(".faq-answer").forEach(item => {
         if (item !== answer) {
             item.classList.remove("open");
@@ -444,10 +432,122 @@ function toggleFAQ(element) {
         }
     });
     
-    // Toggle current
     answer.classList.toggle("open");
     toggle.classList.toggle("open");
 }
 
 
+/* =========================================
+   MUSIC PLAYER - 8 SONGS (NO KAALAMADAN)
+========================================= */
+
+const playlist = [
+    { name: "Vidamuyarchi", file: "songs/vidamuyarchi.mp3" },
+    { name: "Neeye Oli", file: "songs/neeye-oli.mp3" },
+    { name: "Oru Thuli", file: "songs/oru-thuli.mp3" },
+    { name: "Surviva", file: "songs/surviva.mp3" },
+    { name: "Theemai Than Vellum", file: "songs/theemai-than-vellum.mp3" },
+    { name: "Arjunar Villu", file: "songs/arjunar-villu.mp3" },
+    { name: "Ethirthu Nil", file: "songs/ethirthu-nil.mp3" },
+    { name: "Mun Sellada", file: "songs/mun-sellada.mp3" }
+];
+
+let currentSong = 0;
+let isPlaying = false;
+
+const audio = new Audio();
+const playBtn = document.querySelector(".control-btn.play");
+const previousBtn = document.querySelector(".control-btn.previous");
+const nextBtn = document.querySelector(".control-btn.next");
+const progressBar = document.getElementById("progressBar");
+const currentTimeDisplay = document.getElementById("currentTime");
+const durationDisplay = document.getElementById("duration");
+const playerTitle = document.querySelector(".player-info h3");
+const playerDescription = document.querySelector(".player-info p");
+
+function formatTime(seconds) {
+    if (!isFinite(seconds)) return "0:00";
+    const minutes = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return minutes + ":" + String(secs).padStart(2, "0");
+}
+
+function loadSong(index) {
+    currentSong = index;
+    audio.src = playlist[currentSong].file;
+    if (playerTitle) playerTitle.textContent = playlist[currentSong].name;
+    if (playerDescription) playerDescription.textContent = "Workout Pulse • " + playlist[currentSong].name;
+    progressBar.value = 0;
+    currentTimeDisplay.textContent = "0:00";
+    durationDisplay.textContent = "0:00";
+}
+
+function playSong() {
+    audio.play()
+        .then(() => {
+            isPlaying = true;
+            if (playBtn) playBtn.textContent = "⏸";
+        })
+        .catch(error => console.log("Play error:", error));
+}
+
+function pauseSong() {
+    audio.pause();
+    isPlaying = false;
+    if (playBtn) playBtn.textContent = "▶";
+}
+
+if (playBtn) {
+    playBtn.addEventListener("click", function() {
+        if (isPlaying) pauseSong();
+        else playSong();
+    });
+}
+
+if (previousBtn) {
+    previousBtn.addEventListener("click", function() {
+        currentSong--;
+        if (currentSong < 0) currentSong = playlist.length - 1;
+        loadSong(currentSong);
+        playSong();
+    });
+}
+
+if (nextBtn) {
+    nextBtn.addEventListener("click", function() {
+        currentSong++;
+        if (currentSong >= playlist.length) currentSong = 0;
+        loadSong(currentSong);
+        playSong();
+    });
+}
+
+audio.addEventListener("loadedmetadata", function() {
+    durationDisplay.textContent = formatTime(audio.duration);
+    progressBar.max = audio.duration;
+});
+
+audio.addEventListener("timeupdate", function() {
+    currentTimeDisplay.textContent = formatTime(audio.currentTime);
+    progressBar.value = audio.currentTime;
+});
+
+if (progressBar) {
+    progressBar.addEventListener("input", function() {
+        audio.currentTime = Number(this.value);
+    });
+}
+
+audio.addEventListener("ended", function() {
+    currentSong++;
+    if (currentSong >= playlist.length) currentSong = 0;
+    loadSong(currentSong);
+    playSong();
+});
+
+// Load first song
+loadSong(0);
+
+
 console.log("✅ Fitness Freak - All Features Active!");
+console.log("🎵 Music Player - 8 Songs Ready!");
