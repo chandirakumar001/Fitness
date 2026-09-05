@@ -448,7 +448,7 @@ const playlist = [
     { name: "Surviva", file: "songs/surviva.mp3" },
     { name: "Theemai Than Vellum", file: "songs/theemai-than-vellum.mp3" },
     { name: "Arjunar Villu", file: "songs/arjunar-villu.mp3" },
-    { name: "Ethirthu Nil", file: "songs/ethirthu-nil.mp3" },
+    { name: "Ethirthu Nil", file: "songs/ethirthu-nill.mp3" },
     { name: "Mun Sellada", file: "songs/mun-sellada.mp3" }
 ];
 
