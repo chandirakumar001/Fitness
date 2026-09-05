@@ -442,14 +442,14 @@ function toggleFAQ(element) {
 ========================================= */
 
 const playlist = [
-    { name: "Vidamuyarchi", file: "./songs/vidamuyarchi.mp3" },
-    { name: "Neeye Oli", file: "./songs/neeye-oli.mp3" },
-    { name: "Oru Thuli", file: "./songs/oru-thuli.mp3" },
-    { name: "Surviva", file: "./songs/surviva.mp3" },
-    { name: "Theemai Than Vellum", file: "./songs/theemai-than-vellum.mp3" },
-    { name: "Arjunar Villu", file: "./songs/arjunar-villu.mp3" },
-    { name: "Ethirthu Nil", file: "./songs/edhirthu-nill.mp3" },
-    { name: "Mun Sellada", file: "./songs/mun-sellada.mp3" }
+    { name: "Vidamuyarchi", file: "songs/vidamuyarchi.mp3" },
+    { name: "Neeye Oli", file: "songs/neeye-oli.mp3" },
+    { name: "Oru Thuli", file: "songs/oru-thuli.mp3" },
+    { name: "Surviva", file: "songs/surviva.mp3" },
+    { name: "Theemai Than Vellum", file: "songs/theemai-than-vellum.mp3" },
+    { name: "Arjunar Villu", file: "songs/arjunar-villu.mp3" },
+    { name: "Ethirthu Nil", file: "songs/edhirthu-nill.mp3" },
+    { name: "Mun Sellada", file: "songs/mun-sellada.mp3" }
 ];
 
 let currentSong = 0;
