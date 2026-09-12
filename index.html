@@ -281,13 +281,13 @@
             <div class="player-card">
                 <div class="player-image">🎵</div>
                 <div class="player-info">
-                    <h3>Workout Pulse</h3>
-                    <p>High-energy tracks to power your training sessions</p>
+                    <h3 id="trackTitle">Workout Pulse</h3>
+                    <p id="trackDesc">High-energy tracks to power your training sessions</p>
                 </div>
                 <div class="player-controls">
-                    <button class="control-btn previous">⏮</button>
-                    <button class="control-btn play">▶</button>
-                    <button class="control-btn next">⏭</button>
+                    <button class="control-btn previous" onclick="prevTrack()">⏮</button>
+                    <button class="control-btn play" id="playBtn" onclick="togglePlay()">▶</button>
+                    <button class="control-btn next" onclick="nextTrack()">⏭</button>
                 </div>
                 <div class="music-progress">
                     <div class="time-row">
@@ -296,6 +296,7 @@
                     </div>
                     <input type="range" id="progressBar" value="0" min="0" max="100">
                 </div>
+                <audio id="bgAudio" preload="metadata"></audio>
             </div>
             <div class="motivation-quotes">
                 <div class="quote-card">
