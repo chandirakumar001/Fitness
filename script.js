@@ -253,6 +253,88 @@ function recommendFromFood() {
 }
 
 /* -----------------------------------------
+   MUSIC PLAYER (new — was UI-only before, now functional)
+   Demo tracks below are placeholders — swap the "src" values
+   with your own hosted mp3 files when ready.
+----------------------------------------- */
+const playlist = [
+    { title: "Arjunar Villu",          desc: "High-energy tracks to power your training sessions", src: "songs/arjunar-villu.mp3" },
+    { title: "Edhirthu Nill",          desc: "Push through — stay strong",                          src: "songs/edhirthu-nill.mp3" },
+    { title: "Mun Sellada",            desc: "Keep moving forward",                                 src: "songs/mun-sellada.mp3" },
+    { title: "Neeye Oli",              desc: "Find your inner light",                                src: "songs/neeye-oli.mp3" },
+    { title: "Oru Thuli",              desc: "Every drop of effort counts",                          src: "songs/oru-thuli.mp3" },
+    { title: "Surviva",                desc: "Outlast, outwork, survive",                            src: "songs/surviva.mp3" },
+    { title: "Theemai Dhaan Vellum",   desc: "Overcome the odds",                                   src: "songs/theemai-dhaan-vellum.mp3" },
+    { title: "Vidamuyarchi",           desc: "Never give up the fight",                              src: "songs/vidamuyarchi.mp3" }
+];
+
+let currentTrack = 0;
+const audio = document.getElementById('bgAudio');
+const playBtn = document.getElementById('playBtn');
+const progressBar = document.getElementById('progressBar');
+const currentTimeEl = document.getElementById('currentTime');
+const durationEl = document.getElementById('duration');
+const trackTitleEl = document.getElementById('trackTitle');
+const trackDescEl = document.getElementById('trackDesc');
+
+function formatTime(sec) {
+    if (isNaN(sec)) return "0:00";
+    const m = Math.floor(sec / 60);
+    const s = Math.floor(sec % 60).toString().padStart(2, '0');
+    return `${m}:${s}`;
+}
+
+function loadTrack(index, autoplay) {
+    currentTrack = (index + playlist.length) % playlist.length;
+    const track = playlist[currentTrack];
+    audio.src = track.src;
+    trackTitleEl.textContent = track.title;
+    trackDescEl.textContent = track.desc;
+    progressBar.value = 0;
+    currentTimeEl.textContent = "0:00";
+    durationEl.textContent = "0:00";
+    if (autoplay) {
+        audio.play().then(() => { playBtn.textContent = "⏸"; }).catch(() => {});
+    } else {
+        playBtn.textContent = "▶";
+    }
+}
+
+function togglePlay() {
+    if (!audio.src) loadTrack(currentTrack, false);
+    if (audio.paused) {
+        audio.play().then(() => { playBtn.textContent = "⏸"; }).catch(() => {
+            trackDescEl.textContent = "Couldn't play this track — check your connection.";
+        });
+    } else {
+        audio.pause();
+        playBtn.textContent = "▶";
+    }
+}
+
+function nextTrack() { loadTrack(currentTrack + 1, !audio.paused || audio.currentTime > 0); }
+function prevTrack() { loadTrack(currentTrack - 1, !audio.paused || audio.currentTime > 0); }
+
+audio.addEventListener('loadedmetadata', () => {
+    durationEl.textContent = formatTime(audio.duration);
+});
+
+audio.addEventListener('timeupdate', () => {
+    if (audio.duration) {
+        progressBar.value = (audio.currentTime / audio.duration) * 100;
+        currentTimeEl.textContent = formatTime(audio.currentTime);
+    }
+});
+
+audio.addEventListener('ended', () => nextTrack());
+
+progressBar.addEventListener('input', () => {
+    if (audio.duration) {
+        audio.currentTime = (progressBar.value / 100) * audio.duration;
+    }
+});
+
+/* -----------------------------------------
    PROGRESS TRACKER — daily check-in, streak, rank
    Stored in localStorage so it works offline in an APK WebView.
 ----------------------------------------- */
