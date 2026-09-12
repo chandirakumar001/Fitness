@@ -523,37 +523,6 @@ section {
 .food-plan-result p { color: var(--text-muted); line-height: 1.7; }
 .food-plan-result ul { padding-left: 1.4rem; color: var(--text-muted); margin-top: 0.5rem; }
 .food-plan-result li { margin-bottom: 0.4rem; }
-/* Food log form */
-.food-log-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.2rem;
-    margin-bottom: 1rem;
-}
-
-.food-log-item label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: var(--text-muted);
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-transform: uppercase;
-}
-
-.food-log-item input {
-    width: 100%;
-    padding: 0.9rem 1rem;
-    background: var(--secondary-dark);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    color: white;
-    font-size: 0.95rem;
-}
-
-.food-log-item input:focus {
-    outline: none;
-    border-color: var(--accent-green);
-}
 
 /* =========================================
    PROGRESS + CHECK-IN
