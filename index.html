@@ -1,12 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Fitness Freak</title>
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
-    
-    <!--Fitness Freak website -->
-
+</head>
+<body>
 
     <!-- HEADER -->
     <header>
-       
         <div class="header-container">
             <div class="logo">Fitness <span>Freak</span></div>
             <nav>
@@ -14,6 +18,7 @@
                     <li><a href="#workout">Workouts</a></li>
                     <li><a href="#calisthenics">Calisthenics</a></li>
                     <li><a href="#calories">Calories</a></li>
+                    <li><a href="#foodplan">Food → Workout</a></li>
                     <li><a href="#progress">Progress</a></li>
                     <li><a href="#faq">FAQs</a></li>
                     <li><button class="nav-cta">Sign Up</button></li>
@@ -25,377 +30,148 @@
     <!-- HERO SECTION -->
     <section class="hero">
         <div class="hero-container">
-            <div class="hero-badge">
-                ⚡ Join thousands building their best bodies
-            </div>
+            <div class="hero-badge">⚡ Join thousands building their best bodies</div>
             <h1>Build Your <span class="highlight">Body.</span><br>Build Your <span class="highlight">Discipline.</span></h1>
             <p class="hero-subtitle">Your complete fitness companion for workouts, calisthenics, nutrition and everyday motivation.</p>
             <p class="hero-description">Train smarter, understand your nutrition, and stay consistent — all in one place.</p>
-            <div class="hero-ctas">
-                <button class="btn btn-primary">Start Your Fitness Journey</button>
-                <button class="btn btn-secondary">Explore Workouts</button>
-            </div>
         </div>
     </section>
+
+    <!-- QUICK ACTIONS (moved from bottom of every section to the top) -->
+    <div class="quick-actions">
+        <a href="#goals" class="btn btn-primary">Find My Goal</a>
+        <a href="#workout" class="btn btn-secondary">View My Workout</a>
+        <a href="#calisthenics" class="btn btn-secondary">Explore Calisthenics</a>
+        <a href="#calories" class="btn btn-secondary">Calculate Calories</a>
+        <a href="#foodplan" class="btn btn-secondary">Food → Workout</a>
+    </div>
 
     <!-- FITNESS GOAL SECTION -->
     <section id="goals">
         <div class="section-header">
             <h2>What's Your Fitness <span class="highlight">Goal?</span></h2>
-            <p>Choose your goal and get guidance designed around your fitness journey.</p>
+            <p>Tap a card to see guidance designed around your fitness journey.</p>
         </div>
         <div class="goals-grid">
-            <div class="goal-card">
+            <div class="goal-card" onclick="openGoalModal('weightloss')">
                 <div class="goal-icon">🔥</div>
                 <h3>Weight Loss</h3>
                 <p>Burn fat, shed pounds, and build a leaner physique</p>
             </div>
-            <div class="goal-card">
+            <div class="goal-card" onclick="openGoalModal('weightgain')">
                 <div class="goal-icon">💪</div>
                 <h3>Weight Gain</h3>
                 <p>Build muscle, gain strength, and bulk up sustainably</p>
             </div>
-            <div class="goal-card">
+            <div class="goal-card" onclick="openGoalModal('strength')">
                 <div class="goal-icon">🏋️</div>
                 <h3>Build Strength</h3>
                 <p>Get stronger, lift heavier, and dominate your workouts</p>
             </div>
-            <div class="goal-card">
+            <div class="goal-card" onclick="openGoalModal('general')">
                 <div class="goal-icon">⚡</div>
                 <h3>General Fitness</h3>
                 <p>Stay active, build endurance, and feel amazing</p>
             </div>
         </div>
-        <div class="text-center mt-3">
-            <button class="btn btn-primary">Find My Goal</button>
+    </section>
+
+    <!-- WEEKLY WORKOUT SECTION -->
+    <section id="workout">
+        <div class="section-header">
+            <h2>Your Weekly Workout <span class="highlight">Planned.</span></h2>
+            <p>Follow your customized weekly workout routine designed for balanced muscle development.</p>
+        </div>
+
+        <div class="workout-week">
+            <div class="workout-day">
+                <h3>Monday (Chest)</h3>
+                <div class="workout-item"><div class="exercise-name">Floor Dumbbell Press</div><div class="exercise-details"><span class="detail-tag">4 sets</span><span class="detail-tag">8–12 reps</span></div></div>
+                <div class="workout-item"><div class="exercise-name">Decline / Incline Push-ups</div><div class="exercise-details"><span class="detail-tag">3 sets</span><span class="detail-tag">10–15 reps</span></div></div>
+                <div class="workout-item"><div class="exercise-name">Standing Dumbbell Scoop</div><div class="exercise-details"><span class="detail-tag">3 sets</span><span class="detail-tag">12 reps</span></div></div>
+                <div class="workout-item"><div class="exercise-name">Squeeze Bench Press</div><div class="exercise-details"><span class="detail-tag">4 sets</span><span class="detail-tag">8–10 reps</span></div></div>
+            </div>
+
+            <div class="workout-day">
+                <h3>Tuesday (Back)</h3>
+                <div class="workout-item"><div class="exercise-name">One-arm Row</div><div class="exercise-details"><span class="detail-tag">4 sets</span><span class="detail-tag">10 reps each side</span></div></div>
+                <div class="workout-item"><div class="exercise-name">Dumbbell Pullover</div><div class="exercise-details"><span class="detail-tag">3 sets</span><span class="detail-tag">12 reps</span></div></div>
+                <div class="workout-item"><div class="exercise-name">Reverse Grip Bent Over Row</div><div class="exercise-details"><span class="detail-tag">4 sets</span><span class="detail-tag">8–10 reps</span></div></div>
+                <div class="workout-item"><div class="exercise-name">Romanian Deadlift</div><div class="exercise-details"><span class="detail-tag">4 sets</span><span class="detail-tag">8 reps</span></div></div>
+                <div class="workout-item"><div class="exercise-name">Medium Grip Pull-ups</div><div class="exercise-details"><span class="detail-tag">3 sets</span><span class="detail-tag">6–10 reps</span></div></div>
+            </div>
+
+            <div class="workout-day">
+                <h3>Wednesday (Arms)</h3>
+                <div class="workout-item"><div class="exercise-name">Alternating Curls</div><div class="exercise-details"><span class="detail-tag">4 sets</span><span class="detail-tag">10–12 reps</span></div></div>
+                <div class="workout-item"><div class="exercise-name">Concentration Curls</div><div class="exercise-details"><span class="detail-tag">3 sets</span><span class="detail-tag">10 reps</span></div></div>
+                <div class="workout-item"><div class="exercise-name">Hammer Curls</div><div class="exercise-details"><span class="detail-tag">3 sets</span><span class="detail-tag">12 reps</span></div></div>
+                <div class="workout-item"><div class="exercise-name">Seated Tricep Extension</div><div class="exercise-details"><span class="detail-tag">4 sets</span><span class="detail-tag">10 reps</span></div></div>
+                <div class="workout-item"><div class="exercise-name">Floor Skull Crushers</div><div class="exercise-details"><span class="detail-tag">3 sets</span><span class="detail-tag">10–12 reps</span></div></div>
+                <div class="workout-item"><div class="exercise-name">Bench Dips</div><div class="exercise-details"><span class="detail-tag">3 sets</span><span class="detail-tag">15 reps</span></div></div>
+            </div>
+
+            <div class="workout-day">
+                <h3>Thursday (Legs)</h3>
+                <div class="workout-item"><div class="exercise-name">Crunches</div><div class="exercise-details"><span class="detail-tag">3 sets</span><span class="detail-tag">20 reps</span></div></div>
+                <div class="workout-item"><div class="exercise-name">Lying Leg Raises</div><div class="exercise-details"><span class="detail-tag">3 sets</span><span class="detail-tag">15 reps</span></div></div>
+                <div class="workout-item"><div class="exercise-name">Heel Touches</div><div class="exercise-details"><span class="detail-tag">3 sets</span><span class="detail-tag">20 reps</span></div></div>
+                <div class="workout-item"><div class="exercise-name">Planks</div><div class="exercise-details"><span class="detail-tag">3 sets</span><span class="detail-tag">45–60 sec</span></div></div>
+                <div class="workout-item"><div class="exercise-name">Wrist Curls</div><div class="exercise-details"><span class="detail-tag">3 sets</span><span class="detail-tag">15 reps</span></div></div>
+            </div>
+
+            <div class="workout-day">
+                <h3>Friday (Shoulders)</h3>
+                <div class="workout-item"><div class="exercise-name">Shoulder Press</div><div class="exercise-details"><span class="detail-tag">4 sets</span><span class="detail-tag">8–10 reps</span></div></div>
+                <div class="workout-item"><div class="exercise-name">Lateral Raises</div><div class="exercise-details"><span class="detail-tag">3 sets</span><span class="detail-tag">12–15 reps</span></div></div>
+                <div class="workout-item"><div class="exercise-name">Front Raises</div><div class="exercise-details"><span class="detail-tag">3 sets</span><span class="detail-tag">12 reps</span></div></div>
+                <div class="workout-item"><div class="exercise-name">Rear Lateral Raises</div><div class="exercise-details"><span class="detail-tag">3 sets</span><span class="detail-tag">12 reps</span></div></div>
+                <div class="workout-item"><div class="exercise-name">Shrugs</div><div class="exercise-details"><span class="detail-tag">4 sets</span><span class="detail-tag">12–15 reps</span></div></div>
+            </div>
+
+            <div class="workout-day">
+                <h3>Saturday (Abs &amp; Forearms)</h3>
+                <div class="workout-item"><div class="exercise-name">Crunches</div><div class="exercise-details"><span class="detail-tag">3 sets</span><span class="detail-tag">20 reps</span></div></div>
+                <div class="workout-item"><div class="exercise-name">Lying Leg Raises</div><div class="exercise-details"><span class="detail-tag">3 sets</span><span class="detail-tag">15 reps</span></div></div>
+                <div class="workout-item"><div class="exercise-name">Heel Touches</div><div class="exercise-details"><span class="detail-tag">3 sets</span><span class="detail-tag">20 reps</span></div></div>
+                <div class="workout-item"><div class="exercise-name">Planks</div><div class="exercise-details"><span class="detail-tag">3 sets</span><span class="detail-tag">45–60 sec</span></div></div>
+                <div class="workout-item"><div class="exercise-name">Wrist Curls</div><div class="exercise-details"><span class="detail-tag">3 sets</span><span class="detail-tag">15 reps</span></div></div>
+            </div>
+
+            <div class="workout-day">
+                <h3>Sunday (Rest)</h3>
+                <p style="color: var(--text-muted); margin-top: 1rem;">Dedicated rest day to allow muscle fibers to recover and rebuild.</p>
+            </div>
         </div>
     </section>
-<!-- WEEKLY WORKOUT SECTION (UPDATED) -->
-<section id="workout">
-    <div class="section-header">
-        <h2>Your Weekly Workout <span class="highlight">Planned.</span></h2>
-        <p>Follow your customized weekly workout routine designed for balanced muscle development.</p>
-    </div>
-
-    <div class="workout-week">
-
-        <!-- Monday - Chest -->
-        <div class="workout-day">
-            <h3>Monday (Chest)</h3>
-
-            <div class="workout-item">
-                <div class="exercise-name">Floor Dumbbell Press</div>
-                <div class="exercise-details">
-                    <span class="detail-tag">4 sets</span>
-                    <span class="detail-tag">8–12 reps</span>
-                </div>
-            </div>
-
-            <div class="workout-item">
-                <div class="exercise-name">Decline / Incline Push-ups</div>
-                <div class="exercise-details">
-                    <span class="detail-tag">3 sets</span>
-                    <span class="detail-tag">10–15 reps</span>
-                </div>
-            </div>
-
-            <div class="workout-item">
-                <div class="exercise-name">Standing Dumbbell Scoop</div>
-                <div class="exercise-details">
-                    <span class="detail-tag">3 sets</span>
-                    <span class="detail-tag">12 reps</span>
-                </div>
-            </div>
-
-            <div class="workout-item">
-                <div class="exercise-name">Squeeze Bench Press</div>
-                <div class="exercise-details">
-                    <span class="detail-tag">4 sets</span>
-                    <span class="detail-tag">8–10 reps</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tuesday - Back -->
-        <div class="workout-day">
-            <h3>Tuesday (Back)</h3>
-
-            <div class="workout-item">
-                <div class="exercise-name">One-arm Row</div>
-                <div class="exercise-details">
-                    <span class="detail-tag">4 sets</span>
-                    <span class="detail-tag">10 reps each side</span>
-                </div>
-            </div>
-
-            <div class="workout-item">
-                <div class="exercise-name">Dumbbell Pullover</div>
-                <div class="exercise-details">
-                    <span class="detail-tag">3 sets</span>
-                    <span class="detail-tag">12 reps</span>
-                </div>
-            </div>
-
-            <div class="workout-item">
-                <div class="exercise-name">Reverse Grip Bent Over Row</div>
-                <div class="exercise-details">
-                    <span class="detail-tag">4 sets</span>
-                    <span class="detail-tag">8–10 reps</span>
-                </div>
-            </div>
-
-            <div class="workout-item">
-                <div class="exercise-name">Romanian Deadlift</div>
-                <div class="exercise-details">
-                    <span class="detail-tag">4 sets</span>
-                    <span class="detail-tag">8 reps</span>
-                </div>
-            </div>
-
-            <div class="workout-item">
-                <div class="exercise-name">Medium Grip Pull-ups</div>
-                <div class="exercise-details">
-                    <span class="detail-tag">3 sets</span>
-                    <span class="detail-tag">6–10 reps</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Wednesday - Arms -->
-        <div class="workout-day">
-            <h3>Wednesday (Arms)</h3>
-
-            <div class="workout-item">
-                <div class="exercise-name">Alternating Curls</div>
-                <div class="exercise-details">
-                    <span class="detail-tag">4 sets</span>
-                    <span class="detail-tag">10–12 reps</span>
-                </div>
-            </div>
-
-            <div class="workout-item">
-                <div class="exercise-name">Concentration Curls</div>
-                <div class="exercise-details">
-                    <span class="detail-tag">3 sets</span>
-                    <span class="detail-tag">10 reps</span>
-                </div>
-            </div>
-
-            <div class="workout-item">
-                <div class="exercise-name">Hammer Curls</div>
-                <div class="exercise-details">
-                    <span class="detail-tag">3 sets</span>
-                    <span class="detail-tag">12 reps</span>
-                </div>
-            </div>
-
-            <div class="workout-item">
-                <div class="exercise-name">Seated Tricep Extension</div>
-                <div class="exercise-details">
-                    <span class="detail-tag">4 sets</span>
-                    <span class="detail-tag">10 reps</span>
-                </div>
-            </div>
-
-            <div class="workout-item">
-                <div class="exercise-name">Floor Skull Crushers</div>
-                <div class="exercise-details">
-                    <span class="detail-tag">3 sets</span>
-                    <span class="detail-tag">10–12 reps</span>
-                </div>
-            </div>
-
-            <div class="workout-item">
-                <div class="exercise-name">Bench Dips</div>
-                <div class="exercise-details">
-                    <span class="detail-tag">3 sets</span>
-                    <span class="detail-tag">15 reps</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Thursday - Legs -->
-        <div class="workout-day">
-            <h3>Thursday (Legs)</h3>
-
-            <div class="workout-item">
-                <div class="exercise-name">Crunches</div>
-                <div class="exercise-details">
-                    <span class="detail-tag">3 sets</span>
-                    <span class="detail-tag">20 reps</span>
-                </div>
-            </div>
-
-            <div class="workout-item">
-                <div class="exercise-name">Lying Leg Raises</div>
-                <div class="exercise-details">
-                    <span class="detail-tag">3 sets</span>
-                    <span class="detail-tag">15 reps</span>
-                </div>
-            </div>
-
-            <div class="workout-item">
-                <div class="exercise-name">Heel Touches</div>
-                <div class="exercise-details">
-                    <span class="detail-tag">3 sets</span>
-                    <span class="detail-tag">20 reps</span>
-                </div>
-            </div>
-
-            <div class="workout-item">
-                <div class="exercise-name">Planks</div>
-                <div class="exercise-details">
-                    <span class="detail-tag">3 sets</span>
-                    <span class="detail-tag">45–60 sec</span>
-                </div>
-            </div>
-
-            <div class="workout-item">
-                <div class="exercise-name">Wrist Curls</div>
-                <div class="exercise-details">
-                    <span class="detail-tag">3 sets</span>
-                    <span class="detail-tag">15 reps</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Friday - Shoulders -->
-        <div class="workout-day">
-            <h3>Friday (Shoulders)</h3>
-
-            <div class="workout-item">
-                <div class="exercise-name">Shoulder Press</div>
-                <div class="exercise-details">
-                    <span class="detail-tag">4 sets</span>
-                    <span class="detail-tag">8–10 reps</span>
-                </div>
-            </div>
-
-            <div class="workout-item">
-                <div class="exercise-name">Lateral Raises</div>
-                <div class="exercise-details">
-                    <span class="detail-tag">3 sets</span>
-                    <span class="detail-tag">12–15 reps</span>
-                </div>
-            </div>
-
-            <div class="workout-item">
-                <div class="exercise-name">Front Raises</div>
-                <div class="exercise-details">
-                    <span class="detail-tag">3 sets</span>
-                    <span class="detail-tag">12 reps</span>
-                </div>
-            </div>
-
-            <div class="workout-item">
-                <div class="exercise-name">Rear Lateral Raises</div>
-                <div class="exercise-details">
-                    <span class="detail-tag">3 sets</span>
-                    <span class="detail-tag">12 reps</span>
-                </div>
-            </div>
-
-            <div class="workout-item">
-                <div class="exercise-name">Shrugs</div>
-                <div class="exercise-details">
-                    <span class="detail-tag">4 sets</span>
-                    <span class="detail-tag">12–15 reps</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Saturday - Abs & Forearms -->
-        <div class="workout-day">
-            <h3>Saturday (Abs & Forearms)</h3>
-
-            <div class="workout-item">
-                <div class="exercise-name">Crunches</div>
-                <div class="exercise-details">
-                    <span class="detail-tag">3 sets</span>
-                    <span class="detail-tag">20 reps</span>
-                </div>
-            </div>
-
-            <div class="workout-item">
-                <div class="exercise-name">Lying Leg Raises</div>
-                <div class="exercise-details">
-                    <span class="detail-tag">3 sets</span>
-                    <span class="detail-tag">15 reps</span>
-                </div>
-            </div>
-
-            <div class="workout-item">
-                <div class="exercise-name">Heel Touches</div>
-                <div class="exercise-details">
-                    <span class="detail-tag">3 sets</span>
-                    <span class="detail-tag">20 reps</span>
-                </div>
-            </div>
-
-            <div class="workout-item">
-                <div class="exercise-name">Planks</div>
-                <div class="exercise-details">
-                    <span class="detail-tag">3 sets</span>
-                    <span class="detail-tag">45–60 sec</span>
-                </div>
-            </div>
-
-            <div class="workout-item">
-                <div class="exercise-name">Wrist Curls</div>
-                <div class="exercise-details">
-                    <span class="detail-tag">3 sets</span>
-                    <span class="detail-tag">15 reps</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Sunday - Rest -->
-        <div class="workout-day">
-            <h3>Sunday (Rest)</h3>
-            <p style="color: var(--text-muted); margin-top: 1rem;">
-                Dedicated rest day to allow muscle fibers to recover and rebuild.
-            </p>
-        </div>
-
-    </div>
-
-    <div class="text-center mt-3">
-        <button class="btn btn-primary">View My Workout</button>
-    </div>
-</section>
-
-
 
     <!-- CALISTHENICS SECTION -->
     <section id="calisthenics">
         <div class="section-header">
             <h2>Start Calisthenics <span class="highlight">From Zero</span></h2>
-            <p>Learn bodyweight training step by step, from basic movements to more advanced skills.</p>
+            <p>Tap a level to see what it covers and how to progress into it.</p>
         </div>
         <div class="progression-path">
-            <div class="progression-step">
+            <div class="progression-step" onclick="openLevelModal('beginner')">
                 <div class="step-icon">🟢</div>
                 <h4>Beginner</h4>
                 <p>Basic push-ups, squats, plank holds</p>
             </div>
-            <div class="progression-step">
+            <div class="progression-step" onclick="openLevelModal('intermediate')">
                 <div class="step-icon">🟡</div>
                 <h4>Intermediate</h4>
                 <p>Wide-grip pull-ups, one-armed planks</p>
             </div>
-            <div class="progression-step">
+            <div class="progression-step" onclick="openLevelModal('advanced')">
                 <div class="step-icon">🔴</div>
                 <h4>Advanced</h4>
                 <p>Handstand push-ups, muscle-ups</p>
             </div>
-            <div class="progression-step">
+            <div class="progression-step" onclick="openLevelModal('expert')">
                 <div class="step-icon">⭐</div>
                 <h4>Expert</h4>
                 <p>Full planche, front lever holds</p>
             </div>
-        </div>
-        <div class="text-center mt-3">
-            <button class="btn btn-primary">Explore Calisthenics</button>
         </div>
     </section>
 
@@ -412,63 +188,89 @@
             </div>
             <div id="foodResults"></div>
         </div>
-        <div class="text-center mt-3">
-            <button class="btn btn-primary">Calculate Calories</button>
+    </section>
+
+    <!-- FOOD → WORKOUT RECOMMENDER (NEW) -->
+    <section id="foodplan">
+        <div class="section-header">
+            <h2>What You Ate → <span class="highlight">What You Train.</span></h2>
+            <p>Tell us what you had today and we'll suggest how to train around it. This is a general guide, not medical or dietary advice.</p>
+        </div>
+
+        <div class="calculator-box">
+            <div class="food-log-grid">
+                <div class="food-log-item">
+                    <label for="mealBreakfast">Breakfast</label>
+                    <input type="text" id="mealBreakfast" placeholder="e.g. eggs, toast, coffee">
+                </div>
+                <div class="food-log-item">
+                    <label for="mealLunch">Lunch</label>
+                    <input type="text" id="mealLunch" placeholder="e.g. rice, chicken curry, salad">
+                </div>
+                <div class="food-log-item">
+                    <label for="mealDinner">Dinner</label>
+                    <input type="text" id="mealDinner" placeholder="e.g. chapati, dal, vegetables">
+                </div>
+                <div class="food-log-item">
+                    <label for="mealSnacks">Snacks / Drinks</label>
+                    <input type="text" id="mealSnacks" placeholder="e.g. chips, soda, fruit">
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                <button class="btn btn-primary" onclick="recommendFromFood()">Get My Recommendation</button>
+            </div>
+            <div id="foodPlanResult"></div>
         </div>
     </section>
-  
-<!-- ================================
-     PROGRESS SECTION
-================================ -->
 
-<section id="progress" class="section">
-
-    <div class="section-header">
-        <h2>Your Progress</h2>
-        <p>Track your fitness journey</p>
-    </div>
-
-    <div class="progress-grid">  
-
-        <!-- Current Streak -->
-        <div class="progress-card">
-            <div class="progress-icon">🔥</div>
-            <h3>Current Streak</h3>
-            <div class="progress-number">0</div>
-            <p>Days</p>
+    <!-- PROGRESS SECTION -->
+    <section id="progress">
+        <div class="section-header">
+            <h2>Your Progress</h2>
+            <p>Track your fitness journey</p>
         </div>
 
-
-
-        <!-- This Month -->
-        <div class="progress-card">
-            <div class="progress-icon">📅</div>
-            <h3>This Month</h3>
-            <div class="progress-number">0</div>
-            <p>Workouts</p>
-        </div>
- 
-
-        <!-- Total Progress -->
-        <div class="progress-card">
-            <div class="progress-icon">💪</div>
-            <h3>Total Progress</h3>
-            <div class="progress-number">0%</div>
-            <p>Completed</p>
+        <!-- DAILY CHECK-IN (NEW) -->
+        <div class="checkin-box">
+            <p id="checkinStatus">Did you complete today's workout?</p>
+            <div class="checkin-buttons">
+                <button class="btn btn-primary" onclick="logWorkout(true)">Yes, done ✅</button>
+                <button class="btn btn-secondary" onclick="logWorkout(false)">Not today</button>
+            </div>
         </div>
 
-<!-- Fitness Rank -->
-<div class="progress-card">
-    <div class="progress-icon">🏆</div>
+        <div class="progress-grid">
+            <div class="progress-card">
+                <div class="progress-icon">🔥</div>
+                <h3>Current Streak</h3>
+                <div class="progress-number" id="streakNumber">0</div>
+                <p>Days</p>
+            </div>
 
-    <h3>Fitness Rank</h3>
+            <div class="progress-card">
+                <div class="progress-icon">📅</div>
+                <h3>This Month</h3>
+                <div class="progress-number" id="monthNumber">0</div>
+                <p>Workouts</p>
+            </div>
 
-    <div class="progress-number" id="fitnessRank">E</div>
+            <div class="progress-card">
+                <div class="progress-icon">💪</div>
+                <h3>Total Progress</h3>
+                <div class="progress-number" id="totalPercent">0%</div>
+                <p>Completed</p>
+            </div>
 
-    <p id="rankWorkouts">0 Workouts</p>
+            <div class="progress-card">
+                <div class="progress-icon">🏆</div>
+                <h3>Fitness Rank</h3>
+                <div class="progress-number" id="fitnessRank">E</div>
+                <p id="rankWorkouts">0 Workouts</p>
+                <p id="rankMessage">Beginner Rank</p>
+            </div>
+        </div>
+    </section>
 
-    <p id="rankMessage">Beginner Rank</p>
-</div>
     <!-- PLAYLIST SECTION -->
     <section>
         <div class="section-header">
@@ -482,32 +284,18 @@
                     <h3>Workout Pulse</h3>
                     <p>High-energy tracks to power your training sessions</p>
                 </div>
-               <div class="player-controls">
-
-    <button class="control-btn previous">⏮</button>
-
-    <button class="control-btn play">▶</button>
-
-    <button class="control-btn next">⏭</button>
-
-</div>
-
-<div class="music-progress">
-
-    <div class="time-row">
-        <span id="currentTime">0:00</span>
-        <span id="duration">0:00</span>
-    </div>
-
-    <input
-        type="range"
-        id="progressBar"
-        value="0"
-        min="0"
-        max="100"
-    >
-
-</div>
+                <div class="player-controls">
+                    <button class="control-btn previous">⏮</button>
+                    <button class="control-btn play">▶</button>
+                    <button class="control-btn next">⏭</button>
+                </div>
+                <div class="music-progress">
+                    <div class="time-row">
+                        <span id="currentTime">0:00</span>
+                        <span id="duration">0:00</span>
+                    </div>
+                    <input type="range" id="progressBar" value="0" min="0" max="100">
+                </div>
             </div>
             <div class="motivation-quotes">
                 <div class="quote-card">
@@ -524,9 +312,6 @@
                 </div>
             </div>
         </div>
-        <div class="text-center mt-3">
-            <button class="btn btn-primary">Start Your Playlist</button>
-        </div>
     </section>
 
     <!-- FITNESS TIPS SECTION -->
@@ -536,36 +321,12 @@
             <p>Practical fitness tips to keep you on track and motivated</p>
         </div>
         <div class="tips-grid">
-            <div class="tip-card">
-                <div class="tip-icon">🔄</div>
-                <h3>Consistency Beats Intensity</h3>
-                <p>Showing up regularly matters more than one epic workout. Small, consistent efforts compound into massive results over time.</p>
-            </div>
-            <div class="tip-card">
-                <div class="tip-icon">😴</div>
-                <h3>Proper Rest is Training</h3>
-                <p>Your muscles grow during rest, not during workouts. Prioritize 7-9 hours of quality sleep and take rest days seriously.</p>
-            </div>
-            <div class="tip-card">
-                <div class="tip-icon">🥗</div>
-                <h3>Nutrition Fuels Progress</h3>
-                <p>You can't out-train a bad diet. Focus on whole foods, adequate protein, and consistent calorie tracking for your goal.</p>
-            </div>
-            <div class="tip-card">
-                <div class="tip-icon">💪</div>
-                <h3>Progressive Overload Works</h3>
-                <p>Add one more rep, one more set, or a bit more weight each week. Gradual progression prevents plateaus and builds lasting strength.</p>
-            </div>
-            <div class="tip-card">
-                <div class="tip-icon">📊</div>
-                <h3>Track Everything</h3>
-                <p>What gets measured gets managed. Log your workouts, calories, and progress to stay accountable and spot trends.</p>
-            </div>
-            <div class="tip-card">
-                <div class="tip-icon">🎯</div>
-                <h3>Stay Disciplined</h3>
-                <p>Motivation fades, but discipline keeps you going. Build habits, not just goals. Show up even when you don't feel like it.</p>
-            </div>
+            <div class="tip-card"><div class="tip-icon">🔄</div><h3>Consistency Beats Intensity</h3><p>Showing up regularly matters more than one epic workout. Small, consistent efforts compound into massive results over time.</p></div>
+            <div class="tip-card"><div class="tip-icon">😴</div><h3>Proper Rest is Training</h3><p>Your muscles grow during rest, not during workouts. Prioritize 7-9 hours of quality sleep and take rest days seriously.</p></div>
+            <div class="tip-card"><div class="tip-icon">🥗</div><h3>Nutrition Fuels Progress</h3><p>You can't out-train a bad diet. Focus on whole foods, adequate protein, and consistent calorie tracking for your goal.</p></div>
+            <div class="tip-card"><div class="tip-icon">💪</div><h3>Progressive Overload Works</h3><p>Add one more rep, one more set, or a bit more weight each week. Gradual progression prevents plateaus and builds lasting strength.</p></div>
+            <div class="tip-card"><div class="tip-icon">📊</div><h3>Track Everything</h3><p>What gets measured gets managed. Log your workouts, calories, and progress to stay accountable and spot trends.</p></div>
+            <div class="tip-card"><div class="tip-icon">🎯</div><h3>Stay Disciplined</h3><p>Motivation fades, but discipline keeps you going. Build habits, not just goals. Show up even when you don't feel like it.</p></div>
         </div>
     </section>
 
@@ -576,26 +337,10 @@
             <p>See how others are transforming their fitness with Fitness Freak</p>
         </div>
         <div class="reviews-grid">
-            <div class="review-card">
-                <div class="stars">★★★★★</div>
-                <div class="review-text">"I've tried like three fitness apps before this one and always gave up in a week. Something about the way Fitness Freak lays out the weekly plan just made it click for me. I'm on week 6 now."</div>
-                <div class="reviewer-name">— Ankit R.</div>
-            </div>
-            <div class="review-card">
-                <div class="stars">★★★★★</div>
-                <div class="review-text">"The calisthenics section is honestly perfect for beginners. I couldn't even do a full push-up when I started, and the progressions actually made sense instead of throwing me straight into pull-ups."</div>
-                <div class="reviewer-name">— Meera S.</div>
-            </div>
-            <div class="review-card">
-                <div class="stars">★★★★★</div>
-                <div class="review-text">"I didn't expect much from the calorie checker but I use it almost daily now. It's simple, doesn't overwhelm me with numbers, and helped me realize how much I was underestimating my snacks 😅"</div>
-                <div class="reviewer-name">— Devansh P.</div>
-            </div>
-            <div class="review-card">
-                <div class="stars">★★★★★</div>
-                <div class="review-text">"The progress tracker is what keeps me coming back. Seeing my streak makes me not want to break it, even on lazy days. This app genuinely changed my habits."</div>
-                <div class="reviewer-name">— Priya K.</div>
-            </div>
+            <div class="review-card"><div class="stars">★★★★★</div><div class="review-text">"I've tried like three fitness apps before this one and always gave up in a week. Something about the way Fitness Freak lays out the weekly plan just made it click for me. I'm on week 6 now."</div><div class="reviewer-name">— Ankit R.</div></div>
+            <div class="review-card"><div class="stars">★★★★★</div><div class="review-text">"The calisthenics section is honestly perfect for beginners. I couldn't even do a full push-up when I started, and the progressions actually made sense instead of throwing me straight into pull-ups."</div><div class="reviewer-name">— Meera S.</div></div>
+            <div class="review-card"><div class="stars">★★★★★</div><div class="review-text">"I didn't expect much from the calorie checker but I use it almost daily now. It's simple, doesn't overwhelm me with numbers, and helped me realize how much I was underestimating my snacks 😅"</div><div class="reviewer-name">— Devansh P.</div></div>
+            <div class="review-card"><div class="stars">★★★★★</div><div class="review-text">"The progress tracker is what keeps me coming back. Seeing my streak makes me not want to break it, even on lazy days. This app genuinely changed my habits."</div><div class="reviewer-name">— Priya K.</div></div>
         </div>
     </section>
 
@@ -607,63 +352,28 @@
         </div>
         <div class="faq-list">
             <div class="faq-item">
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <span>Is Fitness Freak suitable for beginners?</span>
-                    <span class="faq-toggle">▼</span>
-                </div>
-                <div class="faq-answer">
-                    <p>Yes. The website is designed to guide beginners through workouts, calisthenics, nutrition and fitness goals step by step. Every section starts with foundational content and progressively builds to more advanced material, making it perfect for anyone starting their fitness journey.</p>
-                </div>
+                <div class="faq-question" onclick="toggleFAQ(this)"><span>Is Fitness Freak suitable for beginners?</span><span class="faq-toggle">▼</span></div>
+                <div class="faq-answer"><p>Yes. The website is designed to guide beginners through workouts, calisthenics, nutrition and fitness goals step by step. Every section starts with foundational content and progressively builds to more advanced material, making it perfect for anyone starting their fitness journey.</p></div>
             </div>
-
             <div class="faq-item">
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <span>Can I choose my fitness goal?</span>
-                    <span class="faq-toggle">▼</span>
-                </div>
-                <div class="faq-answer">
-                    <p>Yes. Users can choose goals such as weight loss, weight gain, strength building or general fitness. Once you select your goal, all workout recommendations and nutrition guidance will be customized around that specific objective.</p>
-                </div>
+                <div class="faq-question" onclick="toggleFAQ(this)"><span>Can I choose my fitness goal?</span><span class="faq-toggle">▼</span></div>
+                <div class="faq-answer"><p>Yes. Users can choose goals such as weight loss, weight gain, strength building or general fitness. Once you select your goal, all workout recommendations and nutrition guidance will be customized around that specific objective.</p></div>
             </div>
-
             <div class="faq-item">
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <span>Does the website provide weekly workouts?</span>
-                    <span class="faq-toggle">▼</span>
-                </div>
-                <div class="faq-answer">
-                    <p>Yes. Users can follow structured weekly workout plans with exercises, sets, reps and rest times clearly laid out. The workouts are designed to be progressive, meaning they adapt as you get stronger and more experienced.</p>
-                </div>
+                <div class="faq-question" onclick="toggleFAQ(this)"><span>Does the website provide weekly workouts?</span><span class="faq-toggle">▼</span></div>
+                <div class="faq-answer"><p>Yes. Users can follow structured weekly workout plans with exercises, sets, reps and rest times clearly laid out. The workouts are designed to be progressive, meaning they adapt as you get stronger and more experienced.</p></div>
             </div>
-
             <div class="faq-item">
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <span>Can beginners learn calisthenics?</span>
-                    <span class="faq-toggle">▼</span>
-                </div>
-                <div class="faq-answer">
-                    <p>Yes. The calisthenics section starts with basic bodyweight movements and gradually introduces progression. You'll learn proper form, understand progression paths, and safely advance from basic push-ups and squats to more advanced skills like pull-ups and muscle-ups.</p>
-                </div>
+                <div class="faq-question" onclick="toggleFAQ(this)"><span>Can beginners learn calisthenics?</span><span class="faq-toggle">▼</span></div>
+                <div class="faq-answer"><p>Yes. The calisthenics section starts with basic bodyweight movements and gradually introduces progression. You'll learn proper form, understand progression paths, and safely advance from basic push-ups and squats to more advanced skills like pull-ups and muscle-ups.</p></div>
             </div>
-
             <div class="faq-item">
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <span>Can I calculate food calories?</span>
-                    <span class="faq-toggle">▼</span>
-                </div>
-                <div class="faq-answer">
-                    <p>Yes. Users can search for foods and check their estimated calorie information. You'll also see macro breakdowns (protein, carbs, fats) to understand the nutritional profile of what you're eating, helping you make smarter dietary choices.</p>
-                </div>
+                <div class="faq-question" onclick="toggleFAQ(this)"><span>Can I calculate food calories?</span><span class="faq-toggle">▼</span></div>
+                <div class="faq-answer"><p>Yes. Users can search for foods and check their estimated calorie information, and also log meals to get a workout suggestion for the day.</p></div>
             </div>
-
             <div class="faq-item">
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <span>Can I track my workouts?</span>
-                    <span class="faq-toggle">▼</span>
-                </div>
-                <div class="faq-answer">
-                    <p>Yes. Users can mark completed workouts and track their consistency over time. You'll see your workout streaks, total completed sessions, and get motivational progress visualizations to help keep you accountable and celebrate your wins.</p>
-                </div>
+                <div class="faq-question" onclick="toggleFAQ(this)"><span>Can I track my workouts?</span><span class="faq-toggle">▼</span></div>
+                <div class="faq-answer"><p>Yes. Users can mark completed workouts and track their consistency over time. You'll see your workout streaks, total completed sessions, and get motivational progress visualizations to help keep you accountable and celebrate your wins.</p></div>
             </div>
         </div>
     </section>
@@ -690,7 +400,7 @@
                     <h4>Features</h4>
                     <ul>
                         <li><a href="#progress">Progress Tracking</a></li>
-                        <li><a href="#">Motivation & Playlist</a></li>
+                        <li><a href="#foodplan">Food → Workout</a></li>
                         <li><a href="#">Community</a></li>
                         <li><a href="#">Achievements</a></li>
                     </ul>
@@ -715,13 +425,20 @@
                 </div>
             </div>
             <div class="footer-bottom">
-               
-                <div class="footer-bottom">
-    <p>© 2026 Fitness Freak. All rights reserved.</p>
-    <p>Made by <strong>Chandirakumar</strong> ❤️</p>
-    </div>
-           
-    </div>
-    </div>
+                <p>© 2026 Fitness Freak. All rights reserved.</p>
+                <p>Made by <strong>Chandirakumar</strong> ❤️</p>
+            </div>
+        </div>
     </footer>
+
+    <!-- SHARED MODAL (used by Goals + Calisthenics) -->
+    <div class="modal-overlay" id="infoModal">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeInfoModal()">✕</button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
+</body>
+</html>
