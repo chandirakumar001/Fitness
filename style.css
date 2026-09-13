@@ -579,7 +579,10 @@ section {
 /* =========================================
    PLAYLIST
 ========================================= */
-
+.playlist-container {
+  display: flex;
+  justify-content: center;
+}
 .playlist-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
