@@ -145,18 +145,105 @@ document.addEventListener('click', function (e) {
 ----------------------------------------- */
 // All values are per 100g (or 100ml for liquids) so they can be scaled
 // to any amount the user enters. Source: standard nutrition averages.
+// Note: this is a large curated list of common foods, not a universal
+// database — very obscure items or specific branded products may not match.
 const foodDatabase = {
-    "rice":       { cal: 130, protein: 2.7, carbs: 28,  fat: 0.3 },
-    "chicken":    { cal: 165, protein: 31,  carbs: 0,   fat: 3.6 },
-    "egg":        { cal: 155, protein: 13,  carbs: 1.1, fat: 11  },
-    "banana":     { cal: 89,  protein: 1.1, carbs: 23,  fat: 0.3 },
-    "chapati":    { cal: 297, protein: 9,   carbs: 51,  fat: 6   },
-    "dal":        { cal: 116, protein: 9,   carbs: 20,  fat: 0.4 },
-    "bread":      { cal: 265, protein: 9,   carbs: 49,  fat: 3.2 },
-    "milk":       { cal: 61,  protein: 3.2, carbs: 4.8, fat: 3.3 },
-    "apple":      { cal: 52,  protein: 0.3, carbs: 14,  fat: 0.2 },
-    "chips":      { cal: 536, protein: 7,   carbs: 53,  fat: 35  },
-    "soda":       { cal: 41,  protein: 0,   carbs: 10.6,fat: 0   }
+    // Grains & starches
+    "rice":        { cal: 130, protein: 2.7, carbs: 28,  fat: 0.3 },
+    "brown rice":  { cal: 123, protein: 2.6, carbs: 26,  fat: 1   },
+    "oats":        { cal: 389, protein: 16.9,carbs: 66,  fat: 6.9 },
+    "pasta":       { cal: 131, protein: 5,   carbs: 25,  fat: 1.1 },
+    "noodles":     { cal: 448, protein: 10,  carbs: 60,  fat: 17  },
+    "quinoa":      { cal: 120, protein: 4.4, carbs: 21,  fat: 1.9 },
+    "bread":       { cal: 265, protein: 9,   carbs: 49,  fat: 3.2 },
+    "brown bread": { cal: 247, protein: 13,  carbs: 41,  fat: 3.4 },
+    "chapati":     { cal: 297, protein: 9,   carbs: 51,  fat: 6   },
+    "roti":        { cal: 297, protein: 9,   carbs: 51,  fat: 6   },
+    "naan":        { cal: 310, protein: 9,   carbs: 50,  fat: 8   },
+    "idli":        { cal: 132, protein: 4,   carbs: 24,  fat: 0.5 },
+    "dosa":        { cal: 168, protein: 4,   carbs: 28,  fat: 4   },
+    "poha":        { cal: 130, protein: 2.5, carbs: 27,  fat: 1   },
+    "upma":        { cal: 150, protein: 3,   carbs: 20,  fat: 6   },
+
+    // Proteins
+    "chicken":     { cal: 165, protein: 31,  carbs: 0,   fat: 3.6 },
+    "mutton":      { cal: 294, protein: 25,  carbs: 0,   fat: 21  },
+    "beef":        { cal: 250, protein: 26,  carbs: 0,   fat: 17  },
+    "pork":        { cal: 242, protein: 27,  carbs: 0,   fat: 14  },
+    "fish":        { cal: 206, protein: 22,  carbs: 0,   fat: 12  },
+    "salmon":      { cal: 208, protein: 20,  carbs: 0,   fat: 13  },
+    "tuna":        { cal: 132, protein: 28,  carbs: 0,   fat: 1   },
+    "shrimp":      { cal: 99,  protein: 24,  carbs: 0.2, fat: 0.3 },
+    "egg":         { cal: 155, protein: 13,  carbs: 1.1, fat: 11  },
+    "paneer":      { cal: 265, protein: 18,  carbs: 1.2, fat: 20  },
+    "tofu":        { cal: 76,  protein: 8,   carbs: 1.9, fat: 4.8 },
+
+    // Legumes
+    "dal":         { cal: 116, protein: 9,   carbs: 20,  fat: 0.4 },
+    "lentils":     { cal: 116, protein: 9,   carbs: 20,  fat: 0.4 },
+    "chickpeas":   { cal: 164, protein: 8.9, carbs: 27,  fat: 2.6 },
+    "rajma":       { cal: 127, protein: 8.7, carbs: 22.8,fat: 0.5 },
+    "peas":        { cal: 81,  protein: 5.4, carbs: 14,  fat: 0.4 },
+    "soybean":     { cal: 173, protein: 16.6,carbs: 9.9, fat: 9   },
+
+    // Dairy
+    "milk":        { cal: 61,  protein: 3.2, carbs: 4.8, fat: 3.3 },
+    "curd":        { cal: 61,  protein: 3.5, carbs: 4.7, fat: 3.3 },
+    "yogurt":      { cal: 61,  protein: 3.5, carbs: 4.7, fat: 3.3 },
+    "cheese":      { cal: 402, protein: 25,  carbs: 1.3, fat: 33  },
+    "butter":      { cal: 717, protein: 0.9, carbs: 0.1, fat: 81  },
+    "ghee":        { cal: 900, protein: 0,   carbs: 0,   fat: 100 },
+    "cream":       { cal: 340, protein: 2.1, carbs: 2.8, fat: 36  },
+
+    // Fruits
+    "apple":       { cal: 52,  protein: 0.3, carbs: 14,  fat: 0.2 },
+    "banana":      { cal: 89,  protein: 1.1, carbs: 23,  fat: 0.3 },
+    "mango":       { cal: 60,  protein: 0.8, carbs: 15,  fat: 0.4 },
+    "orange":      { cal: 47,  protein: 0.9, carbs: 12,  fat: 0.1 },
+    "grapes":      { cal: 69,  protein: 0.7, carbs: 18,  fat: 0.2 },
+    "watermelon":  { cal: 30,  protein: 0.6, carbs: 8,   fat: 0.2 },
+    "papaya":      { cal: 43,  protein: 0.5, carbs: 11,  fat: 0.3 },
+    "pineapple":   { cal: 50,  protein: 0.5, carbs: 13,  fat: 0.1 },
+    "strawberry":  { cal: 32,  protein: 0.7, carbs: 7.7, fat: 0.3 },
+    "pomegranate": { cal: 83,  protein: 1.7, carbs: 19,  fat: 1.2 },
+    "guava":       { cal: 68,  protein: 2.6, carbs: 14,  fat: 1   },
+
+    // Vegetables
+    "potato":      { cal: 77,  protein: 2,   carbs: 17,  fat: 0.1 },
+    "tomato":      { cal: 18,  protein: 0.9, carbs: 3.9, fat: 0.2 },
+    "onion":       { cal: 40,  protein: 1.1, carbs: 9.3, fat: 0.1 },
+    "carrot":      { cal: 41,  protein: 0.9, carbs: 10,  fat: 0.2 },
+    "spinach":     { cal: 23,  protein: 2.9, carbs: 3.6, fat: 0.4 },
+    "broccoli":    { cal: 34,  protein: 2.8, carbs: 7,   fat: 0.4 },
+    "cauliflower": { cal: 25,  protein: 1.9, carbs: 5,   fat: 0.3 },
+    "cabbage":     { cal: 25,  protein: 1.3, carbs: 5.8, fat: 0.1 },
+    "cucumber":    { cal: 15,  protein: 0.7, carbs: 3.6, fat: 0.1 },
+    "capsicum":    { cal: 20,  protein: 0.9, carbs: 4.6, fat: 0.2 },
+    "brinjal":     { cal: 25,  protein: 1,   carbs: 6,   fat: 0.2 },
+
+    // Nuts & seeds
+    "almonds":     { cal: 579, protein: 21,  carbs: 22,  fat: 50  },
+    "peanuts":     { cal: 567, protein: 26,  carbs: 16,  fat: 49  },
+    "cashew":      { cal: 553, protein: 18,  carbs: 30,  fat: 44  },
+    "walnut":      { cal: 654, protein: 15,  carbs: 14,  fat: 65  },
+
+    // Snacks & fast food
+    "chips":       { cal: 536, protein: 7,   carbs: 53,  fat: 35  },
+    "popcorn":     { cal: 375, protein: 11,  carbs: 74,  fat: 4.3 },
+    "biscuit":     { cal: 480, protein: 7,   carbs: 63,  fat: 22  },
+    "chocolate":   { cal: 546, protein: 4.9, carbs: 61,  fat: 31  },
+    "pizza":       { cal: 266, protein: 11,  carbs: 33,  fat: 10  },
+    "burger":      { cal: 295, protein: 17,  carbs: 30,  fat: 14  },
+    "fries":       { cal: 312, protein: 3.4, carbs: 41,  fat: 15  },
+    "samosa":      { cal: 262, protein: 4,   carbs: 24,  fat: 17  },
+    "pakora":      { cal: 315, protein: 8,   carbs: 25,  fat: 20  },
+
+    // Drinks
+    "soda":        { cal: 41,  protein: 0,   carbs: 10.6,fat: 0   },
+    "juice":       { cal: 45,  protein: 0.5, carbs: 11,  fat: 0.1 },
+    "coffee":      { cal: 2,   protein: 0.3, carbs: 0,   fat: 0   },
+    "tea":         { cal: 1,   protein: 0,   carbs: 0.3, fat: 0   },
+    "beer":        { cal: 43,  protein: 0.5, carbs: 3.6, fat: 0   }
 };
 
 function searchFood() {
@@ -166,7 +253,9 @@ function searchFood() {
     const resultsBox = document.getElementById('foodResults');
     if (!input) { resultsBox.innerHTML = ''; return; }
 
-    const match = Object.keys(foodDatabase).find(key => input.includes(key));
+    const match = Object.keys(foodDatabase)
+        .sort((a, b) => b.length - a.length)
+        .find(key => input.includes(key));
 
     if (!match) {
         resultsBox.innerHTML = `<div class="food-result"><p>No match found for "${input}". Try a simpler term like "rice" or "egg".</p></div>`;
