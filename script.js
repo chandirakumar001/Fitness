@@ -143,22 +143,26 @@ document.addEventListener('click', function (e) {
 /* -----------------------------------------
    CALORIE SEARCH (simple built-in lookup)
 ----------------------------------------- */
+// All values are per 100g (or 100ml for liquids) so they can be scaled
+// to any amount the user enters. Source: standard nutrition averages.
 const foodDatabase = {
     "rice":       { cal: 130, protein: 2.7, carbs: 28,  fat: 0.3 },
     "chicken":    { cal: 165, protein: 31,  carbs: 0,   fat: 3.6 },
-    "egg":        { cal: 78,  protein: 6,   carbs: 0.6, fat: 5   },
-    "banana":     { cal: 105, protein: 1.3, carbs: 27,  fat: 0.4 },
-    "chapati":    { cal: 120, protein: 3,   carbs: 18,  fat: 3.7 },
-    "dal":        { cal: 180, protein: 12,  carbs: 27,  fat: 4   },
-    "bread":      { cal: 79,  protein: 3.1, carbs: 14,  fat: 1   },
-    "milk":       { cal: 122, protein: 8.1, carbs: 12,  fat: 4.8 },
-    "apple":      { cal: 95,  protein: 0.5, carbs: 25,  fat: 0.3 },
-    "chips":      { cal: 152, protein: 2,   carbs: 15,  fat: 10  },
-    "soda":       { cal: 140, protein: 0,   carbs: 39,  fat: 0   }
+    "egg":        { cal: 155, protein: 13,  carbs: 1.1, fat: 11  },
+    "banana":     { cal: 89,  protein: 1.1, carbs: 23,  fat: 0.3 },
+    "chapati":    { cal: 297, protein: 9,   carbs: 51,  fat: 6   },
+    "dal":        { cal: 116, protein: 9,   carbs: 20,  fat: 0.4 },
+    "bread":      { cal: 265, protein: 9,   carbs: 49,  fat: 3.2 },
+    "milk":       { cal: 61,  protein: 3.2, carbs: 4.8, fat: 3.3 },
+    "apple":      { cal: 52,  protein: 0.3, carbs: 14,  fat: 0.2 },
+    "chips":      { cal: 536, protein: 7,   carbs: 53,  fat: 35  },
+    "soda":       { cal: 41,  protein: 0,   carbs: 10.6,fat: 0   }
 };
 
 function searchFood() {
     const input = document.getElementById('foodInput').value.trim().toLowerCase();
+    const qtyRaw = parseFloat(document.getElementById('foodQty').value);
+    const unit = document.getElementById('foodUnit').value;
     const resultsBox = document.getElementById('foodResults');
     if (!input) { resultsBox.innerHTML = ''; return; }
 
@@ -169,17 +173,29 @@ function searchFood() {
         return;
     }
 
+    // Default to 100g if the amount is missing or invalid
+    let grams = (!isNaN(qtyRaw) && qtyRaw > 0) ? qtyRaw : 100;
+    if (unit === 'kg') grams *= 1000;
+
     const data = foodDatabase[match];
+    const multiplier = grams / 100; // database values are per 100g
+    const cal = Math.round(data.cal * multiplier);
+    const protein = (data.protein * multiplier).toFixed(1);
+    const carbs = (data.carbs * multiplier).toFixed(1);
+    const fat = (data.fat * multiplier).toFixed(1);
+
+    const displayQty = grams >= 1000 ? `${(grams / 1000).toFixed(2)}kg` : `${grams}g`;
+
     resultsBox.innerHTML = `
         <div class="food-result">
             <div class="food-header">
-                <div class="food-name">${match.charAt(0).toUpperCase() + match.slice(1)}</div>
-                <div class="food-calories">${data.cal} kcal</div>
+                <div class="food-name">${match.charAt(0).toUpperCase() + match.slice(1)} (${displayQty})</div>
+                <div class="food-calories">${cal} kcal</div>
             </div>
             <div class="macro-info">
-                <div class="macro-item"><div class="macro-label">Protein</div><div class="macro-value">${data.protein}g</div></div>
-                <div class="macro-item"><div class="macro-label">Carbs</div><div class="macro-value">${data.carbs}g</div></div>
-                <div class="macro-item"><div class="macro-label">Fat</div><div class="macro-value">${data.fat}g</div></div>
+                <div class="macro-item"><div class="macro-label">Protein</div><div class="macro-value">${protein}g</div></div>
+                <div class="macro-item"><div class="macro-label">Carbs</div><div class="macro-value">${carbs}g</div></div>
+                <div class="macro-item"><div class="macro-label">Fat</div><div class="macro-value">${fat}g</div></div>
             </div>
         </div>
     `;
