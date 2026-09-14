@@ -423,6 +423,46 @@ section {
 
 .search-box button:hover { transform: translateY(-2px); }
 
+.qty-input {
+    width: 100px;
+    flex: 0 0 100px;
+    padding: 1rem;
+    background: var(--secondary-dark);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+}
+
+.qty-input:focus {
+    outline: none;
+    border-color: var(--accent-green);
+    box-shadow: 0 0 15px rgba(0, 255, 102, 0.12);
+}
+
+.unit-select {
+    flex: 0 0 80px;
+    padding: 1rem 0.5rem;
+    background: var(--secondary-dark);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.unit-select:focus {
+    outline: none;
+    border-color: var(--accent-green);
+}
+
+.search-hint {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    margin-top: -1.4rem;
+    margin-bottom: 1.5rem;
+}
+
 .food-result {
     background: var(--primary-dark);
     border: 1px solid var(--border-color);
@@ -954,6 +994,8 @@ footer {
     .macro-info { grid-template-columns: 1fr; }
     .search-box { flex-direction: column; }
     .search-box button { padding: 1rem; }
+    .qty-input, .unit-select { flex: 1 1 auto; width: 100%; }
+    .search-hint { margin-top: 0.5rem; }
     .footer-content { grid-template-columns: 1fr 1fr; }
     .checkin-buttons { flex-direction: column; }
     .checkin-buttons .btn { width: 100%; }
