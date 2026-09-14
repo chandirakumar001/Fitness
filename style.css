@@ -579,14 +579,10 @@ section {
 /* =========================================
    PLAYLIST
 ========================================= */
+
 .playlist-container {
-  display: flex;
-  justify-content: center;
-}
-.playlist-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    display: flex;
+    justify-content: center;
 }
 
 .player-card {
@@ -594,6 +590,8 @@ section {
     border: 1px solid var(--border-color);
     border-radius: 14px;
     padding: 2rem;
+    width: 100%;
+    max-width: 360px;
 }
 
 .player-image {
@@ -949,7 +947,6 @@ footer {
     .progress-grid,
     .tips-grid,
     .reviews-grid,
-    .playlist-container,
     .food-log-grid {
         grid-template-columns: 1fr;
     }
