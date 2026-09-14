@@ -191,8 +191,14 @@
         <div class="calculator-box">
             <div class="search-box">
                 <input type="text" placeholder="Search for a food item..." id="foodInput">
+                <input type="number" placeholder="Amount" id="foodQty" min="1" value="100" class="qty-input">
+                <select id="foodUnit" class="unit-select">
+                    <option value="g">g</option>
+                    <option value="kg">kg</option>
+                </select>
                 <button onclick="searchFood()">Search</button>
             </div>
+            <p class="search-hint">Enter the food, then the amount in grams or kilograms, to get calories for that exact quantity.</p>
             <div id="foodResults"></div>
         </div>
     </section>
